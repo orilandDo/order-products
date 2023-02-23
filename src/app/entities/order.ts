@@ -11,4 +11,5 @@ export interface Order {
     receivedDate: string|null,
     note: string,
     status: number, // Trạng thái đơn (1: đang chờ, 2: đã nhận)
+    productName: string, 
 }

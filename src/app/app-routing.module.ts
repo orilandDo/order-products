@@ -10,6 +10,7 @@ import { StatisticsComponent } from './statistics/statistics.component';
 import { AgencyComponent } from './agency/agency.component';
 import { AuthGuardGuard } from './services/guards/auth-guard.guard';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
+import { LogoutComponent } from './logout/logout.component';
 
 const routes: Routes = [
   { path: '', redirectTo: 'login', pathMatch: 'full' },
@@ -23,6 +24,7 @@ const routes: Routes = [
   { path: 'products', component: ProductsComponent, canActivate: [AuthGuardGuard] },
   { path: 'statistics', component: StatisticsComponent, canActivate: [AuthGuardGuard] },
   { path: 'agency', component: AgencyComponent, canActivate: [AuthGuardGuard] },
+  { path: 'logout', component: LogoutComponent, canActivate: [AuthGuardGuard] },
   { path: '**', component: PageNotFoundComponent },
 ];
 

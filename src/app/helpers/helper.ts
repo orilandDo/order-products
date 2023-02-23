@@ -8,6 +8,16 @@ export interface INavbarData {
     items?: INavbarData[];
 }
 
+export interface ICity {
+  value: number;
+  label: string;
+}
+
+export interface ITransport {
+  value: number;
+  label: string;
+}
+
 export const fadeInOut = trigger('fadeInOut', [
     transition(':enter', [
         style({opacity: 0}),

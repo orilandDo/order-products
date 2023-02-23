@@ -4,3 +4,45 @@
     padding-right: 1rem !important;
     padding-bottom: 1rem !important;
 }
+
+.header {
+    text-align: center;
+    padding: 1.5rem 0;
+}
+
+.table-container {
+    padding: 0 1rem;
+
+    table {
+        width: 100%;
+        border: 1px solid grey;
+        border-bottom: 1.05px solid grey;
+        margin-bottom: 20px;
+
+        .wrap-text {
+            white-space: break-spaces;
+        }
+
+        .bg-tr {
+            background: beige;
+        }
+    }
+
+    .mat-mdc-row .mat-mdc-cell {
+        border-bottom: 1px solid transparent;
+        border-top: 1px solid transparent;
+        cursor: pointer;
+    }
+
+    .mat-mdc-row:hover .mat-mdc-cell {
+        border-color: currentColor;
+    }
+
+    .demo-row-is-clicked {
+        font-weight: bold;
+    }
+
+    th.mat-sort-header-sorted {
+        color: black;
+    }
+}

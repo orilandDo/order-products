@@ -1,0 +1,71 @@
+.container {
+    padding: 0 !important;
+    margin: 0 !important;
+    min-width: 100%;
+    
+    .p-top {
+        padding-top: 1rem;
+    }
+
+    .field {
+        padding-right: 1.5rem;
+    }
+
+    .text-label {
+        text-align: left;
+        align-self: center;
+        font-weight: 500;
+        padding-left: 2rem;
+    }
+
+    .require {
+        color: red;
+        margin-left: 0.25rem;
+    }
+
+    .btn-container {
+        text-align: right;
+        padding-bottom: 5rem;
+        padding-right: 1.5rem;
+
+        .btn-order {
+            width: 10rem;
+            min-width: 10rem;
+            color: white;
+            background-color: royalblue;
+            border-color: royalblue;
+            margin-left: 3rem;
+        }
+
+        .btn-cancel {
+            width: 10rem;
+            min-width: 10rem;
+            color: black;
+            background-color: #dadada;
+            border-color: #dadada;
+        }
+
+    }
+
+    .mat-select {
+        margin-top: 0.625rem;
+    }
+    mat-hint {
+        display: none !important;
+    }
+
+    .mat-mdc-form-field-subscript-wrapper.mat-mdc-form-field-bottom-align {
+        display: none !important;
+    }
+
+    .header {
+        text-align: center;
+        padding: 1.5rem 0;
+    }
+    
+    .created-date {
+        display: block;
+        font-weight: 500;
+        padding-left: 1rem;
+    }
+}

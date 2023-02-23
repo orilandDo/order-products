@@ -19,7 +19,6 @@ export class LoginComponent implements OnInit {
 
   ngOnInit(): void {
     // check session
-    this.helper.clearSession();
     this.helper.checkSession('loginStatus');
 
     this.loginService

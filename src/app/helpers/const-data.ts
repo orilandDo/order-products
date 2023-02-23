@@ -1,10 +1,10 @@
 export const Cities = [
   {value: 1, label: 'An Giang'},
   {value: 2, label: 'Kien Giang'},
-  {value: 3, label: 'An Giang'},
-  {value: 4, label: 'An Giang'},
-  {value: 5, label: 'An Giang'},
-  {value: 6, label: 'An Giang'},
+  {value: 3, label: 'Hau Giang'},
+  {value: 4, label: 'My Tho'},
+  {value: 5, label: 'Ben Tre'},
+  {value: 6, label: 'Ca Mau'},
   {value: 7, label: 'An Giang'},
 ]
 

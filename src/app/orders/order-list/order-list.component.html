@@ -1,34 +1,69 @@
-<table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+<div class="bg-white">
+  <h2 class="header">Danh sách đơn đặt hàng</h2>
+  <!-- <div class="search-group input-group">
+    <form>
+      <div class="row">
+        <label class="col-2 form-label" for="form1">Search</label>
+        <input matInput class="col-2 form-control" type="search" id="form1" />
+      </div>
+    </form>
+    <button type="button" class="btn btn-primary">
+      <i class="fas fa-search"></i>
+    </button>
+  </div> -->
+  <div class="table-container mat-elevation-z8">
+    <table mat-table [dataSource]="dataSource" 
+      matSort >
+      <!-- (matSortChange)="announceSortChange($event)"> -->
+      <!-- Position Column -->
+      <ng-container matColumnDef="id">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header
+        sortActionDescription="Sort by number">Mã đơn</th>
+        <td mat-cell *matCellDef="let element">{{element.id}}</td>
+      </ng-container>
 
-    <!--- Note that these columns can be defined in any order.
-          The actual rendered columns are set as a property on the row definition" -->
-  
-    <!-- Position Column -->
-    <ng-container matColumnDef="position">
-      <th mat-header-cell *matHeaderCellDef> No. </th>
-      <td mat-cell *matCellDef="let element"> {{element.position}} </td>
-    </ng-container>
-  
-    <!-- Name Column -->
-    <ng-container matColumnDef="name">
-      <th mat-header-cell *matHeaderCellDef> Name </th>
-      <td mat-cell *matCellDef="let element"> {{element.name}} </td>
-    </ng-container>
-  
-    <!-- Weight Column -->
-    <ng-container matColumnDef="weight">
-      <th mat-header-cell *matHeaderCellDef> Weight </th>
-      <td mat-cell *matCellDef="let element"> {{element.weight}} </td>
-    </ng-container>
-  
-    <!-- Symbol Column -->
-    <ng-container matColumnDef="symbol">
-      <th mat-header-cell *matHeaderCellDef> Symbol </th>
-      <td mat-cell *matCellDef="let element"> {{element.symbol}} </td>
-    </ng-container>
-  
-    <!-- <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr> -->
-  </table>
-  
-  
+      <!-- createdDate Column -->
+      <ng-container matColumnDef="createdDate">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header
+        sortActionDescription="Sort by created date">Ngày tạo đơn</th>
+        <td mat-cell *matCellDef="let element">{{element.createdDate}}</td>
+      </ng-container>
+
+      <!-- receivedDate Column -->
+      <ng-container matColumnDef="receivedDate">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header
+        sortActionDescription="Sort by received date">Ngày nhận hàng</th>
+        <td mat-cell *matCellDef="let element">{{element.receivedDate}}</td>
+      </ng-container>
+
+      <!-- deliveryAddress Column -->
+      <ng-container matColumnDef="deliveryAddress">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header
+        sortActionDescription="Sort by delivery address">Nơi nhận</th>
+        <td mat-cell *matCellDef="let element">{{element.deliveryAddress}}</td>
+      </ng-container>
+
+      <!-- pickupAddress Column -->
+      <ng-container matColumnDef="pickupAddress">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header
+        sortActionDescription="Sort by pickup address">Nơi giao</th>
+        <td mat-cell *matCellDef="let element">{{element.pickupAddress}}</td>
+      </ng-container>
+
+      <!-- product Column -->
+      <ng-container matColumnDef="product">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header
+        sortActionDescription="Sort by product">Sản phẩm</th>
+        <td mat-cell class="wrap-text" *matCellDef="let element">{{element.productName}}</td>
+      </ng-container>
+
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <!-- <tr mat-row (click)="clickedRows.add(row)" [class.demo-row-is-clicked]="clickedRows.has(row)"
+        *matRowDef="let row; columns: displayedColumns;"></tr> -->
+      <tr mat-row (click)="openDialog(row)"
+        *matRowDef="let row; columns: displayedColumns;"></tr>
+    </table>
+    <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons aria-label="Select page of periodic elements">
+    </mat-paginator>
+  </div>
+</div>

@@ -1,13 +1,15 @@
 import { Agency } from "../entities/agency";
 
-export const Agencys: Agency[] = [
+export const AGENCY_DATA: Agency[] = [
     {
         id: 1,
         fullName: 'Nguyen A',
         address: 'CT',
         birthday: null,
         phone: '0698546321',
-        note: ''
+        note: '',
+        accountName: '',
+        password: '',
     },
     {
         id: 2,
@@ -15,7 +17,9 @@ export const Agencys: Agency[] = [
         address: 'HG',
         birthday: null,
         phone: '0685676321',
-        note: ''
+        note: '',
+        accountName: '',
+        password: '',
     },
     {
         id: 3,
@@ -23,7 +27,9 @@ export const Agencys: Agency[] = [
         address: 'AG',
         birthday: null,
         phone: '06985469877',
-        note: ''
+        note: '',
+        accountName: '',
+        password: '',
     },
     {
         id: 4,
@@ -31,7 +37,9 @@ export const Agencys: Agency[] = [
         address: 'HCM',
         birthday: null,
         phone: '0698226320',
-        note: ''
+        note: '',
+        accountName: '',
+        password: '',
     },
     {
         id: 5,
@@ -39,6 +47,18 @@ export const Agencys: Agency[] = [
         address: 'LA',
         birthday: null,
         phone: '0998546331',
-        note: ''
+        note: '',
+        accountName: '',
+        password: '',
+    },
+    {
+        id: 6,
+        fullName: 'Dai Ly Nam Ky',
+        address: 'HCM',
+        birthday: null,
+        phone: '0927546691',
+        note: '',
+        accountName: 'namky@gmail.com',
+        password: '12345678',
     },
 ];

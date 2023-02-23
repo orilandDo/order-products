@@ -5,4 +5,6 @@ export interface Agency {
     phone: string
     note: string;
     birthday: string|null;
+    accountName: string,
+    password: string,
 }

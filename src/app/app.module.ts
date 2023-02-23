@@ -19,8 +19,14 @@ import { OrderReportComponent } from './orders/order-report/order-report.compone
 import { LoginComponent } from './login/login.component';
 import { SublevelMenuComponent } from './sidenav/sublevel-menu.component';
 import { HttpClientModule } from '@angular/common/http';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
+import { LogoutComponent } from './logout/logout.component';
+import { DateAdapter } from '@angular/material/core';
+import { DateFormat } from './helpers/date-format';
+import { DialogDetailOrderComponent } from './orders/order-list/dialog-detail-order/dialog-detail-order.component';
+import { DialogDetailAgencyComponent } from './agency/dialog-detail-agency/dialog-detail-agency.component';
+import { DialogDetailProductComponent } from './products/dialog-detail-product/dialog-detail-product.component';
 
 @NgModule({
   declarations: [
@@ -38,6 +44,10 @@ import { PageNotFoundComponent } from './page-not-found/page-not-found.component
     LoginComponent,
     SublevelMenuComponent,
     PageNotFoundComponent,
+    LogoutComponent,
+    DialogDetailOrderComponent,
+    DialogDetailAgencyComponent,
+    DialogDetailProductComponent,
   ],
   imports: [
     BrowserModule,
@@ -47,8 +57,13 @@ import { PageNotFoundComponent } from './page-not-found/page-not-found.component
     FontAwesomeModule,
     MaterialModule,
     HttpClientModule,
+    ReactiveFormsModule,
   ],
-  providers: [],
+  providers: [{ provide: DateAdapter, useClass: DateFormat }],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule { 
+  constructor(private dateAdapter: DateAdapter<Date>) {
+    dateAdapter.setLocale("en-in");
+  }
+}

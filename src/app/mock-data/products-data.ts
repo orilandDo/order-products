@@ -1,9 +1,9 @@
 import { Product } from "../entities/product";
 
-export const Products: Product[] = [
+export const PRODUCT_DATA: Product[] = [
     {
         id: 1,
-        productName: 'Xi mang Ha Tien 1',
+        productName: 'PCB 30 (vỏ bao Phụ Tử)',
         quantity: 1005,
         price: 100000,
         createDate: '01/01/2023',
@@ -11,7 +11,7 @@ export const Products: Product[] = [
     },
     {
         id: 2,
-        productName: 'Xi mang Ha Tien 2',
+        productName: 'PCB 30 (vỏ bao Sư Tử)',
         quantity: 1010,
         price: 90000,
         createDate: '11/01/2023',
@@ -19,9 +19,17 @@ export const Products: Product[] = [
     },
     {
         id: 3,
-        productName: 'Xi mang Vincem',
+        productName: 'PCB 40 (vỏ bao Phụ tử)',
         quantity: 100,
         price: 120000,
+        createDate: '15/01/2023',
+        note: '',
+    },
+    {
+        id: 4,
+        productName: 'PCB 40 (vỏ bao Sử Tử)',
+        quantity: 100,
+        price: 11000,
         createDate: '15/01/2023',
         note: '',
     },

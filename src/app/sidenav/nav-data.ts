@@ -14,17 +14,17 @@ export const NavbarData: INavbarData[] = [
             {
                 routeLink: 'orders/list',
                 icon: 'fa-list',
-                label: 'List Orders',
+                label: 'Danh sách đơn hàng',
             },
             {
                 routeLink: 'orders/create',
                 icon: 'fa-plus',
-                label: 'Create Orders',
+                label: 'Tạo mới đơn hàng',
             },
             {
                 routeLink: 'orders/report',
                 icon: 'fa-chart-line',
-                label: 'Report',
+                label: 'Thống kê đơn hàng',
             },
         ]
     },
@@ -34,17 +34,17 @@ export const NavbarData: INavbarData[] = [
         label: 'Products',
     },
     {
+        routeLink: 'agency',
+        icon: 'fa-user',
+        label: 'Agency',
+    },
+    {
         routeLink: 'statistics',
         icon: 'fa-chart-column',
         label: 'Statistics',
     },
     {
-        routeLink: 'users',
-        icon: 'fa-user',
-        label: 'Agency',
-    },
-    {
-        routeLink: 'login',
+        routeLink: 'logout',
         icon: 'fa-right-from-bracket',
         label: 'Logout',
     },

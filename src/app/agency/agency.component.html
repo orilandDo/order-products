@@ -1,1 +1,57 @@
-<p>users works!</p>
+<div class="bg-white">
+  <h2 class="header">Danh sách nhà phân phối</h2>
+  
+  <div class="action-add">
+    <button class="btn-add" (click)="openDialog(null)">
+      <mat-icon aria-hidden="false" aria-label="Add icon" fontSet="fas" fontIcon="fa-plus" class="fa-plus"></mat-icon>
+      <span>Thêm mới</span>
+    </button>
+  </div>
+
+  <div class="table-container mat-elevation-z8">
+    <table mat-table [dataSource]="dataSource" matSort>
+
+      <!-- id Column -->
+      <ng-container matColumnDef="id">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by number">No.</th>
+        <td mat-cell *matCellDef="let element">{{element.id}}</td>
+      </ng-container>
+
+      <!-- fullName Column -->
+      <ng-container matColumnDef="fullName">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by fullname">Tên NPP</th>
+        <td mat-cell *matCellDef="let element">{{element.fullName}}</td>
+      </ng-container>
+
+      <!-- address Column -->
+      <ng-container matColumnDef="address">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by address">Địa chỉ</th>
+        <td mat-cell *matCellDef="let element">{{element.address}}</td>
+      </ng-container>
+
+      <!-- phone Column -->
+      <ng-container matColumnDef="phone">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by phone">Liên hệ</th>
+        <td mat-cell *matCellDef="let element">{{element.phone}}</td>
+      </ng-container>
+
+      <!-- accountName Column -->
+      <ng-container matColumnDef="accountName">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by accountName">Tên đăng nhập
+        </th>
+        <td mat-cell *matCellDef="let element">{{element.accountName}}</td>
+      </ng-container>
+
+      <!-- note Column -->
+      <ng-container matColumnDef="note">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by note">Ghi chú</th>
+        <td mat-cell class="wrap-text" *matCellDef="let element">{{element.note}}</td>
+      </ng-container>
+
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row (click)="openDialog(row)" *matRowDef="let row; columns: displayedColumns;"></tr>
+    </table>
+    <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons aria-label="Select page of periodic elements">
+    </mat-paginator>
+  </div>
+</div>
