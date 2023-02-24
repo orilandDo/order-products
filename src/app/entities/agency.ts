@@ -4,7 +4,7 @@ export interface Agency {
     address: string;
     phone: string
     note: string;
-    birthday: string|null;
+    email: string;
     accountName: string,
     password: string,
 }

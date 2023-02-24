@@ -14,7 +14,7 @@ import { DialogDetailAgencyComponent } from './dialog-detail-agency/dialog-detai
 })
 export class AgencyComponent implements AfterViewInit, OnInit {
 
-  displayedColumns: string[] = ['id', 'fullName', 'address', 'phone', 'accountName', 'note'];
+  displayedColumns: string[] = ['id', 'fullName', 'address', 'phone', 'email', 'accountName', 'note'];
   dataSource = new MatTableDataSource<Agency>(AGENCY_DATA);
   clickedRows = new Set<Agency>();
 
@@ -23,7 +23,7 @@ export class AgencyComponent implements AfterViewInit, OnInit {
 
   constructor(public dialog: MatDialog) { }
   ngOnInit(): void {
-    throw new Error('Method not implemented.');
+    
   }
 
   ngAfterViewInit() {

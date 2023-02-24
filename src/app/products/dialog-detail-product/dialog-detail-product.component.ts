@@ -27,7 +27,7 @@ export class DialogDetailProductComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    if (this.data.id !== 0) {
+    if (this.data && this.data.id !== 0) {
       this.header = 'Cập nhật thông tin sản phẩm';
       this.product.id = this.data.id;
       this.product.productName = this.data.productName;

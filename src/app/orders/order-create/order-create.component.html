@@ -56,13 +56,13 @@
             </mat-form-field>
         </div>
         <div class="mb-3 row field">
-            <span class="col-4 text-label" for="quantity">
+            <span class="col-4 text-label" for="productTotal">
                 Tổng số lượng sản phẩm
                 <label class="require">*</label>
             </span>
             <input matInput [disabled]="true"
                 class="col-4 appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-                id="quantity" type="number" placeholder="(đơn vị tính theo tấn)" max=99999 [(ngModel)]="order.quantity"
+                id="productTotal" type="number" placeholder="(đơn vị tính theo tấn)" max=99999 [(ngModel)]="order.productTotal"
                 [ngModelOptions]="{standalone: true}" [errorStateMatcher]="matcher" />
             <span class="col-4 text-label">(tấn)</span>
         </div>
@@ -83,13 +83,13 @@
             </mat-form-field>
         </div>
         <div class="mb-3 row field">
-            <span class="col-4 text-label" for="product">
-                Số lượng phương tiện
+            <span class="col-4 text-label" for="licensePlates">
+                Số phương tiện
                 <label class="require">*</label>
             </span>
             <input matInput
                 class="col-4 appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-                id="numberOfVehicles" type="number" placeholder="0" max=99999 [(ngModel)]="order.numberOfVehicles"
+                id="licensePlates" type="text" placeholder="KG1234" maxlength=50 [(ngModel)]="order.licensePlates"
                 [ngModelOptions]="{standalone: true}" [errorStateMatcher]="matcher" />
         </div>
         <div class="mb-3 row field">

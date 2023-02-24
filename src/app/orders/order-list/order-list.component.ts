@@ -14,7 +14,7 @@ import { DialogDetailOrderComponent } from './dialog-detail-order/dialog-detail-
 })
 export class OrderListComponent implements AfterViewInit {
 
-  displayedColumns: string[] = ['id', 'createdDate', 'receivedDate', 'deliveryAddress', 'pickupAddress', 'product'];
+  displayedColumns: string[] = ['id', 'createdDate', 'contract', 'receivedDate', 'deliveryAddress', 'pickupAddress', 'productName', 'quantity', 'productTotal', 'licensePlates', 'driver', 'status'];
   dataSource = new MatTableDataSource<Order>(ORDERS_DATA);
   clickedRows = new Set<Order>();
 

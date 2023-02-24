@@ -1,5 +1,6 @@
 <div class="bg-white">
   <h2 class="header">Danh sách đơn đặt hàng</h2>
+  <div>form search</div>
   <!-- <div class="search-group input-group">
     <form>
       <div class="row">
@@ -11,57 +12,108 @@
       <i class="fas fa-search"></i>
     </button>
   </div> -->
+  <div class="action-add">
+    <button class="btn-add" (click)="openDialog(null)">
+      <mat-icon aria-hidden="false" aria-label="Add icon" fontSet="fas" fontIcon="fa-plus" class="fa-plus"></mat-icon>
+      <span>Thêm mới</span>
+    </button>
+  </div>
   <div class="table-container mat-elevation-z8">
-    <table mat-table [dataSource]="dataSource" 
-      matSort >
+    <table mat-table [dataSource]="dataSource" matSort>
       <!-- (matSortChange)="announceSortChange($event)"> -->
-      <!-- Position Column -->
+      <!-- Id Column -->
       <ng-container matColumnDef="id">
-        <th mat-header-cell *matHeaderCellDef mat-sort-header
-        sortActionDescription="Sort by number">Mã đơn</th>
-        <td mat-cell *matCellDef="let element">{{element.id}}</td>
+        <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by id" class="nowrap">Mã số
+          <br /> đơn hàng
+        </th>
+        <td mat-cell *matCellDef="let element" class="center">{{element.id}}</td>
       </ng-container>
 
       <!-- createdDate Column -->
       <ng-container matColumnDef="createdDate">
-        <th mat-header-cell *matHeaderCellDef mat-sort-header
-        sortActionDescription="Sort by created date">Ngày tạo đơn</th>
+        <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by created date"
+          class="nowrap">Ngày tạo đơn
+        </th>
         <td mat-cell *matCellDef="let element">{{element.createdDate}}</td>
+      </ng-container>
+
+      <!-- contract Column -->
+      <ng-container matColumnDef="contract">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by contract" class="nowrap">
+          Hợp đồng
+        </th>
+        <!-- <td mat-cell *matCellDef="let element">{{element.createdDate}}</td> -->
+        <td mat-cell *matCellDef="let element">contract</td>
       </ng-container>
 
       <!-- receivedDate Column -->
       <ng-container matColumnDef="receivedDate">
-        <th mat-header-cell *matHeaderCellDef mat-sort-header
-        sortActionDescription="Sort by received date">Ngày nhận hàng</th>
+        <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by received date"
+          class="nowrap">Ngày nhận <br /> dự kiến</th>
         <td mat-cell *matCellDef="let element">{{element.receivedDate}}</td>
       </ng-container>
 
       <!-- deliveryAddress Column -->
       <ng-container matColumnDef="deliveryAddress">
-        <th mat-header-cell *matHeaderCellDef mat-sort-header
-        sortActionDescription="Sort by delivery address">Nơi nhận</th>
+        <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by deliveryAddress"
+          class="nowrap">Nơi nhận
+        </th>
         <td mat-cell *matCellDef="let element">{{element.deliveryAddress}}</td>
       </ng-container>
 
       <!-- pickupAddress Column -->
       <ng-container matColumnDef="pickupAddress">
-        <th mat-header-cell *matHeaderCellDef mat-sort-header
-        sortActionDescription="Sort by pickup address">Nơi giao</th>
+        <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by pickupAddress"
+          class="nowrap">Nơi giao
+        </th>
         <td mat-cell *matCellDef="let element">{{element.pickupAddress}}</td>
       </ng-container>
 
       <!-- product Column -->
-      <ng-container matColumnDef="product">
-        <th mat-header-cell *matHeaderCellDef mat-sort-header
-        sortActionDescription="Sort by product">Sản phẩm</th>
-        <td mat-cell class="wrap-text" *matCellDef="let element">{{element.productName}}</td>
+      <ng-container matColumnDef="productName">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by productName">Sản phẩm</th>
+        <td mat-cell class="wrap-text" *matCellDef="let element" class="nowrap">
+          <span *ngFor="let i of element.products">{{i.name}}<br /></span>
+        </td>
+      </ng-container>
+
+      <ng-container matColumnDef="quantity">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by quantity" class="nowrap">Số lượng <br />(tấn)</th>
+        <td mat-cell class="wrap-text" *matCellDef="let element">
+          <span *ngFor="let i of element.products">{{i.quantity}}<br /></span>
+        </td>
+      </ng-container>
+
+      <!-- productTotal Column -->
+      <ng-container matColumnDef="productTotal">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by productTotal" class="nowrap">Tổng số lượng<br />(tấn)</th>
+        <td mat-cell *matCellDef="let element" class="center">{{element.productTotal}}</td>
+      </ng-container>
+
+      <!-- licensePlates Column -->
+      <ng-container matColumnDef="licensePlates">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by license plates" class="nowrap">Số
+          phương tiện</th>
+        <td mat-cell *matCellDef="let element" class="center">{{element.licensePlates}}</td>
+      </ng-container>
+
+      <!-- driver Column -->
+      <ng-container matColumnDef="driver">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by driver" class="nowrap">Tên tài xế</th>
+        <td mat-cell *matCellDef="let element" class="nowrap">{{element.driver}}</td>
+      </ng-container>
+
+      <!-- status Column -->
+      <ng-container matColumnDef="status">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by status" class="nowrap">Trạng thái <br/> đơn hàng
+        </th>
+        <td mat-cell *matCellDef="let element" class="center">{{element.status === 1 ? 'Đang chờ' : 'Đã duyệt'}}</td>
       </ng-container>
 
       <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
       <!-- <tr mat-row (click)="clickedRows.add(row)" [class.demo-row-is-clicked]="clickedRows.has(row)"
         *matRowDef="let row; columns: displayedColumns;"></tr> -->
-      <tr mat-row (click)="openDialog(row)"
-        *matRowDef="let row; columns: displayedColumns;"></tr>
+      <tr mat-row (click)="openDialog(row)" *matRowDef="let row; columns: displayedColumns;"></tr>
     </table>
     <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons aria-label="Select page of periodic elements">
     </mat-paginator>

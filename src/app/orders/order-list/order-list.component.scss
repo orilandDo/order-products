@@ -45,4 +45,37 @@
     th.mat-sort-header-sorted {
         color: black;
     }
+
+    .center {
+        text-align: center;
+    }
+}
+
+.action-add {
+    background: royalblue;
+    border: 1px solid royalblue;
+    border-radius: 4px;
+    margin-bottom: 1rem;
+    margin-right: 1rem;
+    width: 8rem;
+    cursor: pointer;
+    overflow: auto;
+    float: right;
+
+    .btn-add {
+        color: white;
+        background-color: transparent;
+        border: none;
+
+        .fa-plus {
+            color: #fff;
+            font-size: 24px;
+        }
+    }
+}
+
+table {
+    .nowrap {
+        white-space: nowrap;
+    }
 }

@@ -30,7 +30,7 @@ export class DialogDetailAgencyComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    if (this.data.id !== 0) {
+    if (this.data && this.data.id !== 0) {
       this.header = 'Cập nhật thông tin NPP';
       this.agency.id = this.data.id;
       this.agency.fullName = this.data.fullName;

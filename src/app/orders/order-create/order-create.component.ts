@@ -20,7 +20,7 @@ export class MyErrorStateMatcher implements ErrorStateMatcher {
   templateUrl: './order-create.component.html',
   styleUrls: ['./order-create.component.scss']
 })
-export class OrderCreateComponent implements OnInit, AfterViewInit  {  
+export class OrderCreateComponent implements OnInit, AfterViewInit {
   cities: any[] = Cities;
   products: any[] = PRODUCT_DATA;
   transport: any[] = Transports;
@@ -30,25 +30,35 @@ export class OrderCreateComponent implements OnInit, AfterViewInit  {
   selected: any;
   createdDate: string = moment().format('DD-MM-YYYY');
 
-  deliveryCityControl = new FormControl<ICity|null>(null, Validators.required);
-  pickupCityControl = new FormControl<ICity|null>(null, Validators.required);
-  productControl = new FormControl<Product|null>(null, Validators.required);
-  transportControl = new FormControl<ITransport|null>(null, Validators.required);
+  deliveryCityControl = new FormControl<ICity | null>(null, Validators.required);
+  pickupCityControl = new FormControl<ICity | null>(null, Validators.required);
+  productControl = new FormControl<Product | null>(null, Validators.required);
+  transportControl = new FormControl<ITransport | null>(null, Validators.required);
 
   order: Order = {
     id: 0,
     createdDate: '12/02/2023',
     deliveryAddress: 'Can Tho',
-    pickupAddress: 'Kien Giang', 
-    productId: 2,
-    quantity: 20,
-    stranport: 1,
-    numberOfVehicles: 1,
+    pickupAddress: 'Kien Giang',
+    productTotal: 20,
+    transport: 1,
+    licensePlates: '',
     driver: 'Nguyen Van Thanh',
     receivedDate: '20/02/2023',
     note: '',
     status: 0,
-    productName: '',
+    products: [
+      {
+        id: 1,
+        name: 'PCB 30 (vỏ bao Phụ Tử)',
+        quantity: 10,
+      },
+      {
+        id: 3,
+        name: 'PCB 40 (vỏ bao Sử Tử) ',
+        quantity: 20,
+      },
+    ]
   }
 
   matcher = new MyErrorStateMatcher();
@@ -60,6 +70,6 @@ export class OrderCreateComponent implements OnInit, AfterViewInit  {
   ngOnInit(): void {
   }
 
-  onSubmit() {}
+  onSubmit() { }
 
 }

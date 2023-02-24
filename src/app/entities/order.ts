@@ -1,15 +1,20 @@
 export interface Order {
     id: number;
-    createdDate: string|null; // Ngày tạo đơn
+    createdDate: string; // Ngày tạo đơn
     deliveryAddress: string; // Nơi nhận hàng
     pickupAddress: string, // Nơi giao hàng
-    productId: number,
-    quantity: number,
-    stranport: number, // Phuong tien van chuyen (1: bộ, 2: thủy, 3: hàng không)
-    numberOfVehicles: number,
+    productTotal: number,
+    transport: number, // Phuong tien van chuyen (1: bộ, 2: thủy, 3: hàng không)
+    licensePlates: string, //biển số
     driver: string,
-    receivedDate: string|null,
+    receivedDate: string,
     note: string,
     status: number, // Trạng thái đơn (1: đang chờ, 2: đã nhận)
-    productName: string, 
+    products: ProductItem[],
+}
+
+export interface ProductItem {
+    id: number,
+    name: string,
+    quantity: number,
 }

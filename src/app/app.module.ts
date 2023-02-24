@@ -9,7 +9,6 @@ import { BodyComponent } from './body/body.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { ProductsComponent } from './products/products.component';
 import { StatisticsComponent } from './statistics/statistics.component';
-import { OrdersComponent } from './orders/orders.component';
 import { AgencyComponent } from './agency/agency.component';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { MaterialModule } from './helpers/material.module';
@@ -36,7 +35,6 @@ import { DialogDetailProductComponent } from './products/dialog-detail-product/d
     DashboardComponent,
     ProductsComponent,
     StatisticsComponent,
-    OrdersComponent,
     AgencyComponent,
     OrderListComponent,
     OrderCreateComponent,
