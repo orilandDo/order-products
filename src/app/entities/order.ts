@@ -10,6 +10,7 @@ export interface Order {
     receivedDate: string,
     note: string,
     status: number, // Trạng thái đơn (1: đang chờ, 2: đã nhận)
+    contract: string,
     products: ProductItem[],
 }
 

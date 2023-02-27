@@ -47,6 +47,7 @@ export class OrderCreateComponent implements OnInit, AfterViewInit {
     receivedDate: '20/02/2023',
     note: '',
     status: 0,
+    contract: '',
     products: [
       {
         id: 1,
@@ -71,5 +72,9 @@ export class OrderCreateComponent implements OnInit, AfterViewInit {
   }
 
   onSubmit() { }
+
+  onCancel() {
+    this.order
+  }
 
 }

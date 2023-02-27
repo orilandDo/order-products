@@ -2,7 +2,7 @@ import { AfterViewInit, Component, Inject, OnInit } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { Cities, Transports } from '../../../helpers/const-data';
 import { PRODUCT_DATA } from '../../../mock-data/products-data';
-import { Order, ProductItem } from '../../../entities/order';
+import { Order } from '../../../entities/order';
 import { MyErrorStateMatcher } from '../../order-create/order-create.component';
 import * as moment from 'moment';
 import { FormControl, Validators } from '@angular/forms';
@@ -43,6 +43,7 @@ export class DialogDetailOrderComponent implements OnInit, AfterViewInit {
     licensePlates: '',
     receivedDate: '',
     status: 0,
+    contract: '',
     products: [],
   };
 
@@ -67,6 +68,7 @@ export class DialogDetailOrderComponent implements OnInit, AfterViewInit {
       this.order.status = this.data.status;
       this.order.note = this.data.note;
       this.order.products = this.data.products;
+      this.order.contract = this.data.contract;
     }
   }
 

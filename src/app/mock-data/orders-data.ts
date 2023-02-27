@@ -13,6 +13,7 @@ export const ORDERS_DATA: Order[] = [
         licensePlates: 'CT0989',
         receivedDate: '20/02/2023',
         status: 1,
+        contract: 'HĐBB2023/XMHT',
         products: [
             {
                 id: 1,
@@ -38,6 +39,7 @@ export const ORDERS_DATA: Order[] = [
         licensePlates: 'KG1234',
         receivedDate: '10/01/2023',
         status: 2,
+        contract: 'HĐBB2023/AMHT',
         products: [
             {
                 id: 4,

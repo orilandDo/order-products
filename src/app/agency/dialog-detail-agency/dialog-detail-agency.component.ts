@@ -16,7 +16,7 @@ export class DialogDetailAgencyComponent implements OnInit {
     id: 0,
     fullName: '',
     address: '',
-    birthday: null,
+    contract: '',
     phone: '',
     note: '',
     accountName: '',

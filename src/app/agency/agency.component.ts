@@ -14,7 +14,7 @@ import { DialogDetailAgencyComponent } from './dialog-detail-agency/dialog-detai
 })
 export class AgencyComponent implements AfterViewInit, OnInit {
 
-  displayedColumns: string[] = ['id', 'fullName', 'address', 'phone', 'email', 'accountName', 'note'];
+  displayedColumns: string[] = ['id', 'fullName', 'address', 'phone', 'email', 'accountName', 'contract', 'note'];
   dataSource = new MatTableDataSource<Agency>(AGENCY_DATA);
   clickedRows = new Set<Agency>();
 

@@ -49,6 +49,14 @@
     .center {
         text-align: center;
     }
+
+    .color-green {
+        color: limegreen;
+    }
+
+    .color-black {
+        color: black;
+    }
 }
 
 .action-add {
@@ -66,10 +74,17 @@
         color: white;
         background-color: transparent;
         border: none;
+        padding-left: 8px;
+        padding-top: 5px;
 
         .fa-plus {
             color: #fff;
             font-size: 24px;
+        }
+
+        .pad-label {
+            margin-left: 5px;
+            position: absolute;
         }
     }
 }

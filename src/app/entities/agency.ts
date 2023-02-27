@@ -7,4 +7,5 @@ export interface Agency {
     email: string;
     accountName: string,
     password: string,
+    contract: string,
 }

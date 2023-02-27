@@ -2,78 +2,89 @@
     <h2 class="header">{{header}}</h2>
     <form class="form-create shadow-md rounded px-8 pt-6 pb-8">
         <div class="mb-3 row field p-top">
-            <span class="col-4 text-label" for="fullName">
+            <span class="col-5 text-label" for="fullName">
                 Tên nhà phân phối
                 <label class="require">*</label>
             </span>
             <input matInput
-                class="col-8 appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                class="col-7 appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
                 id="fullName" type="text" placeholder="" maxlength="120" [(ngModel)]="agency.fullName"
                 [ngModelOptions]="{standalone: true}" [errorStateMatcher]="matcher" />
         </div>
         <div class="mb-3 row field">
-            <span class="col-4 text-label" for="address">
+            <span class="col-5 text-label" for="address">
                 Địa chỉ
                 <label class="require">*</label>
             </span>
             <input matInput
-                class="col-8 appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                class="col-7 appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
                 id="address" type="text" placeholder="" maxlength="500" [(ngModel)]="agency.address"
                 [ngModelOptions]="{standalone: true}" [errorStateMatcher]="matcher" />
         </div>
         <div class="mb-3 row field">
-            <span class="col-4 text-label" for="phone">
-                Số điện thoại liên hệ
+            <span class="col-5 text-label" for="phone">
+                Số điện thoại
                 <label class="require">*</label>
             </span>
             <input matInput
-                class="col-8 appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                class="col-7 appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
                 id="phone" type="text" placeholder="" maxlength="11" [(ngModel)]="agency.phone"
                 [ngModelOptions]="{standalone: true}" [errorStateMatcher]="matcher" />
         </div>
         <div class="mb-3 row field">
-            <span class="col-4 text-label" for="accountName">
+            <span class="col-5 text-label" for="accountName">
                 Tên đăng nhập
                 <label class="require">*</label>
             </span>
             <input matInput
-                class="col-8 appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                class="col-7 appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
                 id="accountName" type="text" placeholder="" maxlength="120" [(ngModel)]="agency.accountName"
                 [ngModelOptions]="{standalone: true}" [errorStateMatcher]="matcher" />
         </div>
         <div class="mb-3 row field">
-            <span class="col-4 text-label" for="password">
+            <span class="col-5 text-label" for="password">
                 Mật khẩu đăng nhập
                 <label class="require">*</label>
             </span>
             <input matInput
-                class="col-8 appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-                id="password" type="password" placeholder="******************" maxlength="50" [(ngModel)]="agency.password"
-                [ngModelOptions]="{standalone: true}" [errorStateMatcher]="matcher" />
+                class="col-7 appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                id="password" type="password" placeholder="******************" maxlength="50"
+                [(ngModel)]="agency.password" [ngModelOptions]="{standalone: true}" [errorStateMatcher]="matcher" />
         </div>
         <div class="mb-3 row field">
-            <span class="col-4 text-label" for="confirmPassword">
+            <span class="col-5 text-label" for="confirmPassword">
                 Xác nhận lại mật khẩu
                 <label class="require">*</label>
             </span>
             <input matInput
-                class="col-8 appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-                id="confirmPassword" type="password" placeholder="******************" maxlength="50" [(ngModel)]="agency.confirmPassword"
+                class="col-7 appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                id="confirmPassword" type="password" placeholder="******************" maxlength="50"
+                [(ngModel)]="agency.confirmPassword" [ngModelOptions]="{standalone: true}"
+                [errorStateMatcher]="matcher" />
+        </div>
+        <div class="mb-3 row field">
+            <span class="col-5 text-label" for="contract">
+                Tên hợp đồng
+                <label class="require">*</label>
+            </span>
+            <input matInput
+                class="col-7 appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                id="contract" type="text" placeholder="" maxlength="50" [(ngModel)]="agency.contract"
                 [ngModelOptions]="{standalone: true}" [errorStateMatcher]="matcher" />
         </div>
         <div class="mb-6 row field">
-            <span class="col-4 text-label" for="note">
+            <span class="col-5 text-label" for="note">
                 Ghi chú
             </span>
             <textarea
-                class="col-8 shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                class="col-7 shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
                 id="note" type="text" placeholder="" maxlength="1000" [(ngModel)]="agency.note"
                 [ngModelOptions]="{standalone: true}"></textarea>
         </div>
         <div class="btn-container">
             <button class="btn-cancel py-2 px-4 rounded focus:outline-none focus:shadow-outline"
-            [mat-dialog-close]="agency.id" cdkFocusInitial>Hủy bỏ</button>
-            <button class="btn-save py-2 px-4 rounded focus:outline-none focus:shadow-outline" type="button"
+                [mat-dialog-close]="agency.id" cdkFocusInitial>Hủy bỏ</button>
+            <button class="btn-save py-2 px-4 rounded focus:outline-none focus:shadow-outline" [mat-dialog-close]="true" type="button"
                 (click)="onSubmit()">
                 Lưu
             </button>
