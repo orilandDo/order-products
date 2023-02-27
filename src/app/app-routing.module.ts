@@ -16,11 +16,12 @@ const routes: Routes = [
   { path: '', redirectTo: 'login', pathMatch: 'full' },
   { path: 'login', component: LoginComponent },
   { path: 'dashboard', component: DashboardComponent,  },//canActivate: [AuthGuardGuard]
-  { path: 'orders', children: [
-    { path: 'list', component: OrderListComponent, canActivate: [AuthGuardGuard] },
-    { path: 'create', component: OrderCreateComponent, canActivate: [AuthGuardGuard] },
-    { path: 'report', component: OrderReportComponent, canActivate: [AuthGuardGuard] },
-  ]}, 
+  //{ path: 'orders', children: [
+   // { path: 'list', component: OrderListComponent, canActivate: [AuthGuardGuard] },
+   // { path: 'create', component: OrderCreateComponent, canActivate: [AuthGuardGuard] },
+   // { path: 'report', component: OrderReportComponent, canActivate: [AuthGuardGuard] },
+ // ]},
+ { path: 'orders', component: OrderListComponent, canActivate: [AuthGuardGuard] }, 
   { path: 'products', component: ProductsComponent, canActivate: [AuthGuardGuard] },
   { path: 'statistics', component: StatisticsComponent, canActivate: [AuthGuardGuard] },
   { path: 'agency', component: AgencyComponent, canActivate: [AuthGuardGuard] },

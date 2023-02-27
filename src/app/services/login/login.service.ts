@@ -20,6 +20,12 @@ export class LoginService {
     errorSubject: any = new BehaviorSubject<any>(null);
     errorMessage: any = this.errorSubject.asObservable();
 
+    data = [
+        {username: 'admin', password: '123aaa', isAdmin: 1},
+        {username: 'user1', password: '12345678', isAdmin: 0},
+        {username: 'user2@gmail.com', password: '123456', isAdmin: 0},
+    ]
+
     constructor(
         private http: HttpClient,
         private router: Router,
@@ -39,13 +45,21 @@ export class LoginService {
         //     }
         // });
 
-        if (username === 'admin' && password === '123aaa') {
+
+
+        
+        // login thanh cong, lay danh sach menu tuong ung quyen account
+
+        const user = this.data.find(x => x.username === username && x.password === password);
+        if (user) {
+        //if (username === 'admin' && password === '123aaa') {
             sessionStorage.setItem('loginStatus', '1');
+            sessionStorage.setItem('isAdmin', user.isAdmin.toString());
             this.errorSubject.next(null);
             this.router.navigateByUrl(this.navigateComponent);
         } else {
             sessionStorage.setItem('loginStatus', '0');
-            this.errorSubject.next('Username or password is wrong.');
+            this.errorSubject.next('Username hoặc password không đúng.');
         }
     }
 

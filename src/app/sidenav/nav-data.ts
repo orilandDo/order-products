@@ -10,24 +10,29 @@ export const NavbarData: INavbarData[] = [
         routeLink: 'orders',
         icon: 'fa-cart-shopping',
         label: 'Orders',
-        items: [
-            {
-                routeLink: 'orders/list',
-                icon: 'fa-list',
-                label: 'Danh sách đơn hàng',
-            },
-            {
-                routeLink: 'orders/create',
-                icon: 'fa-plus',
-                label: 'Tạo mới đơn hàng',
-            },
-            {
-                routeLink: 'orders/report',
-                icon: 'fa-chart-line',
-                label: 'Thống kê đơn hàng',
-            },
-        ]
     },
+    // {
+    //     routeLink: 'orders',
+    //     icon: 'fa-cart-shopping',
+    //     label: 'Orders',
+    //     items: [
+    //         {
+    //             routeLink: 'orders/list',
+    //             icon: 'fa-list',
+    //             label: 'Danh sách đơn hàng',
+    //         },
+    //         {
+    //             routeLink: 'orders/create',
+    //             icon: 'fa-plus',
+    //             label: 'Tạo mới đơn hàng',
+    //         },
+    //         {
+    //             routeLink: 'orders/report',
+    //             icon: 'fa-chart-line',
+    //             label: 'Thống kê đơn hàng',
+    //         },
+    //     ]
+    // },
     {
         routeLink: 'products',
         icon: 'fa-box-open',

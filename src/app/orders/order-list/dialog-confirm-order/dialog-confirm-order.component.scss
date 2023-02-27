@@ -28,30 +28,6 @@
         padding-left: 2rem;
     }
 
-    // .btn-container {
-    //     text-align: right;
-    //     padding-bottom: 5rem;
-    //     padding-right: 1.5rem;
-
-    //     .btn-save {
-    //         width: 7rem;
-    //         min-width: 7rem;
-    //         color: white;
-    //         background-color: royalblue;
-    //         border-color: royalblue;
-    //         margin-left: 2rem;
-    //     }
-
-    //     .btn-cancel {
-    //         width: 7rem;
-    //         min-width: 7rem;
-    //         color: black;
-    //         background-color: #dadada;
-    //         border-color: #dadada;
-    //     }
-
-    // }
-
     .mat-select {
         margin-top: 0.625rem;
     }
@@ -69,6 +45,12 @@
         padding: 1.5rem 0;
     }
 
+    .created-date {
+        display: block;
+        font-weight: 500;
+        padding-left: 1rem;
+    }
+
     .mat-mdc-dialog-actions {
         justify-content: end;
     }
@@ -83,14 +65,6 @@
         color: black;
         background-color: #dadada;
         border-color: #dadada;
-        margin-right: 1rem;
-    }
-
-    .btn-export {
-        color: white;
-        background-color: brown;
-        border-color: brown;
-        margin-right: 1rem;
     }
 
 }

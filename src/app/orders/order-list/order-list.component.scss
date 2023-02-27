@@ -75,11 +75,11 @@
         background-color: transparent;
         border: none;
         padding-left: 8px;
-        padding-top: 5px;
+        padding-top: 8px;
 
         .fa-plus {
             color: #fff;
-            font-size: 24px;
+            font-size: 20px;
         }
 
         .pad-label {
@@ -90,7 +90,48 @@
 }
 
 table {
+    display: block;
+    overflow-x: auto;
+    white-space: nowrap;
+
     .nowrap {
         white-space: nowrap;
+    }
+
+    .status-icon {
+        padding-top: 8px;
+        padding-right: 8px;
+    }
+}
+
+.action-export {
+    background: royalblue;
+    border: 1px solid royalblue;
+    border-radius: 4px;
+    margin-bottom: 1rem;
+    margin-top: 1rem;
+    margin-right: 1rem;
+    width: 9rem;
+    cursor: pointer;
+    overflow: auto;
+    float: right;
+
+    .btn-export {
+        color: white;
+        background-color: transparent;
+        border: none;
+        padding-left: 8px;
+        padding-top: 5px;
+
+        .fa-download {
+            color: #fff;
+            font-size: 18px;
+            padding-top: 3px;
+        }
+
+        .pad-label {
+            margin-left: 5px;
+            position: absolute;
+        }
     }
 }

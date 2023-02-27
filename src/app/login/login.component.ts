@@ -10,10 +10,11 @@ import { LoginService } from '../services/login/login.service';
 export class LoginComponent implements OnInit {
   username: string = 'admin';
   password: string = '123aaa';
+
   isUsernameValid: boolean = true;
   isPasswordValid: boolean = true;
   error: string = '';
-  helper: Helper = new Helper;
+  helper: Helper = new Helper();
 
   constructor(private loginService: LoginService) { }
 

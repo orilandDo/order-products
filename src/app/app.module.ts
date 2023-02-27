@@ -26,6 +26,7 @@ import { DateFormat } from './helpers/date-format';
 import { DialogDetailOrderComponent } from './orders/order-list/dialog-detail-order/dialog-detail-order.component';
 import { DialogDetailAgencyComponent } from './agency/dialog-detail-agency/dialog-detail-agency.component';
 import { DialogDetailProductComponent } from './products/dialog-detail-product/dialog-detail-product.component';
+import { DialogConfirmOrderComponent } from './orders/order-list/dialog-confirm-order/dialog-confirm-order.component';
 
 @NgModule({
   declarations: [
@@ -46,6 +47,7 @@ import { DialogDetailProductComponent } from './products/dialog-detail-product/d
     DialogDetailOrderComponent,
     DialogDetailAgencyComponent,
     DialogDetailProductComponent,
+    DialogConfirmOrderComponent,
   ],
   imports: [
     BrowserModule,

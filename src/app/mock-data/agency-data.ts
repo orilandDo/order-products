@@ -7,7 +7,7 @@ export const AGENCY_DATA: Agency[] = [
         address: 'Ninh Kieu, Can Tho',
         email: 'nguyena@gmail.com',
         phone: '0698546321',
-        note: '',
+        note: 'xxxxx xxxx xxxxxxx xxxxx xxxx x',
         accountName: 'nguyena@gmail.com',
         password: '',
         contract: 'HĐBB2023/XMHT',

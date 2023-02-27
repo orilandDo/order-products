@@ -1,5 +1,5 @@
 import { AfterViewInit, Component, Inject, OnInit } from '@angular/core';
-import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { Cities, Transports } from '../../../helpers/const-data';
 import { PRODUCT_DATA } from '../../../mock-data/products-data';
 import { Order } from '../../../entities/order';
@@ -8,6 +8,7 @@ import * as moment from 'moment';
 import { FormControl, Validators } from '@angular/forms';
 import { ICity, ITransport } from '../../../helpers/helper';
 import { Product } from '../../../entities/product';
+import { DialogConfirmOrderComponent } from '../dialog-confirm-order/dialog-confirm-order.component';
 
 @Component({
   selector: 'app-dialog-detail-order',
@@ -20,7 +21,8 @@ export class DialogDetailOrderComponent implements OnInit, AfterViewInit {
   receivedDate: Date = new Date();
   error: any = '';
   selected: any;
-  createdDate: string = moment().format('DD-MM-YYYY');
+  isAdmin: boolean = false;
+  isUpdated: boolean = true;
 
   cities: any[] = Cities;
   products: any[] = PRODUCT_DATA;
@@ -33,7 +35,7 @@ export class DialogDetailOrderComponent implements OnInit, AfterViewInit {
 
   order: Order = {
     id: 0,
-    createdDate: '',
+    createdDate: moment().format('DD/MM/YYYY'),
     deliveryAddress: '',
     pickupAddress: '',
     productTotal: 0,
@@ -50,6 +52,7 @@ export class DialogDetailOrderComponent implements OnInit, AfterViewInit {
   constructor(
     public dialogRef: MatDialogRef<DialogDetailOrderComponent>,
     @Inject(MAT_DIALOG_DATA) public data: Order,
+    public dialog: MatDialog,
   ) { }
 
   ngOnInit(): void {
@@ -69,6 +72,8 @@ export class DialogDetailOrderComponent implements OnInit, AfterViewInit {
       this.order.note = this.data.note;
       this.order.products = this.data.products;
       this.order.contract = this.data.contract;
+    } else {
+      this.isUpdated = false;
     }
   }
 
@@ -76,9 +81,24 @@ export class DialogDetailOrderComponent implements OnInit, AfterViewInit {
 
   }
 
-  onSubmit() { }
-
-  onNoClick(): void {
-    this.dialogRef.close();
+  onSubmit() { 
+    console.log(this.order)
+    if (this.order.id === 0) {
+      // navigate to view component
+      const dialogRef = this.dialog.open(DialogConfirmOrderComponent, {
+        data: this.order,
+      });
+  
+      dialogRef.afterClosed().subscribe(result => {
+        console.log('The dialog was closed');
+        //row = result;
+      });
+    } else {
+      // call api update sql and return update data list
+    }
   }
+
+  // onNoClick(): void {
+  //   this.dialogRef.close();
+  // }
 }

@@ -3,6 +3,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Order } from '../../entities/order';
 import { ORDERS_DATA } from '../../mock-data/orders-data';
 import { DialogDetailOrderComponent } from './dialog-detail-order/dialog-detail-order.component';
@@ -21,7 +22,8 @@ export class OrderListComponent implements AfterViewInit {
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
 
-  constructor(public dialog: MatDialog) { }
+  constructor(public dialog: MatDialog,
+    public router: Router, private route: ActivatedRoute) { }
 
   ngAfterViewInit() {
     this.dataSource.sort = this.sort;
@@ -38,6 +40,10 @@ export class OrderListComponent implements AfterViewInit {
       console.log('The dialog was closed');
       //row = result;
     });
+  }
+
+  exportPdf() {
+    // xuat danh sach don dat hang
   }
 
 }

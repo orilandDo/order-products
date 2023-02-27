@@ -23,6 +23,7 @@ export class ProductsComponent implements AfterViewInit, OnInit {
 
   constructor(public dialog: MatDialog) { }
   ngOnInit(): void {
+    
   }
 
   ngAfterViewInit() {
