@@ -37,10 +37,8 @@ export class DialogDetailProductComponent implements OnInit {
     }
   }
 
-  onNoClick(): void {
-    this.dialogRef.close();
-  }
-
-  onSubmit() { }
+  onSubmit() {
+    this.dialogRef.close(this.product);
+   }
 
 }

@@ -1,6 +1,7 @@
 import { Component, EventEmitter, HostListener, OnInit, Output } from '@angular/core';
 import { ActivatedRoute, Params, Router } from '@angular/router';
-import { fadeInOut, INavbarData, rotate } from '../helpers/helper';
+import { fadeInOut, Helper, INavbarData, rotate } from '../helpers/helper';
+import { MenuAdminData, MenuUserData } from '../mock-data/menu-data';
 import { NavbarData } from './nav-data';
 
 interface SideNavToggle {
@@ -25,6 +26,8 @@ export class SidenavComponent implements OnInit {
   multiple: boolean = false;
   isSuccess: boolean = false;
 
+  isAdmin: boolean = new Helper().isAdmin();
+
   @HostListener('window: resize', ['$event']) 
   onResize(event: any) {
     this.screenWidth = window.innerWidth;
@@ -34,7 +37,14 @@ export class SidenavComponent implements OnInit {
     }
   }
 
-  constructor(public router: Router, private route: ActivatedRoute) {}
+  constructor(public router: Router, private route: ActivatedRoute) {
+   // console.log(this.isAdmin)
+    // if (this.isAdmin) {
+    //   this.navData = MenuAdminData;
+    // } else {
+    //   this.navData = MenuUserData;
+    // }
+  }
 
   ngOnInit(): void {
     this.screenWidth = window.innerWidth;

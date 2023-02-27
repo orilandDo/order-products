@@ -72,6 +72,8 @@ export class DialogDetailOrderComponent implements OnInit, AfterViewInit {
       this.order.note = this.data.note;
       this.order.products = this.data.products;
       this.order.contract = this.data.contract;
+      console.log(this.order.products)
+
     } else {
       this.isUpdated = false;
     }
@@ -98,7 +100,7 @@ export class DialogDetailOrderComponent implements OnInit, AfterViewInit {
     }
   }
 
-  // onNoClick(): void {
-  //   this.dialogRef.close();
-  // }
+  onCancel() {
+    this.dialogRef.close();
+  }
 }

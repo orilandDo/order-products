@@ -11,6 +11,8 @@ import { Agency } from '../../entities/agency';
 export class DialogDetailAgencyComponent implements OnInit {
   header: string = 'Thêm mới nhà phân phối';
   error: any = '';
+  disabled: boolean = false;
+
   matcher = new MyErrorStateMatcher();
   agency = {
     id: 0,
@@ -22,6 +24,7 @@ export class DialogDetailAgencyComponent implements OnInit {
     accountName: '',
     password: '',
     confirmPassword: '',
+    email: ''
   };
 
   constructor(
@@ -31,6 +34,7 @@ export class DialogDetailAgencyComponent implements OnInit {
 
   ngOnInit(): void {
     if (this.data && this.data.id !== 0) {
+      this.disabled = true;
       this.header = 'Cập nhật thông tin NPP';
       this.agency.id = this.data.id;
       this.agency.fullName = this.data.fullName;
@@ -39,15 +43,15 @@ export class DialogDetailAgencyComponent implements OnInit {
       this.agency.note = this.data.note;
       this.agency.accountName = this.data.accountName;
       this.agency.password = this.data.password;
+      this.agency.email = this.data.email;
+      this.agency.contract = this.data.contract;
     } else {
-      
+      this.disabled = false;
     }
   }
 
-  onNoClick(): void {
-    this.dialogRef.close();
+  onSubmit() {
+    this.dialogRef.close(this.agency);
   }
-
-  onSubmit() { }
 
 }

@@ -65,5 +65,13 @@ export class Helper {
   clearSession() {
     sessionStorage.clear();
   }
+
+  isAdmin(): boolean {
+    const isAdmin = sessionStorage.getItem('isAdmin');
+    if (Number(isAdmin) === 0) {
+      return false;
+    }
+    return true;
+  }
 }
 

@@ -36,7 +36,7 @@
                 Tên đăng nhập
                 <label class="require">*</label>
             </span>
-            <input matInput
+            <input matInput [disabled]="disabled"
                 class="col-7 appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
                 id="accountName" type="text" placeholder="" maxlength="120" [(ngModel)]="agency.accountName"
                 [ngModelOptions]="{standalone: true}" [errorStateMatcher]="matcher" />
@@ -51,12 +51,12 @@
                 id="password" type="password" placeholder="******************" maxlength="50"
                 [(ngModel)]="agency.password" [ngModelOptions]="{standalone: true}" [errorStateMatcher]="matcher" />
         </div>
-        <div class="mb-3 row field">
+        <div class="mb-3 row field" [hidden]="disabled">
             <span class="col-5 text-label" for="confirmPassword">
                 Xác nhận lại mật khẩu
                 <label class="require">*</label>
             </span>
-            <input matInput
+            <input matInput 
                 class="col-7 appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
                 id="confirmPassword" type="password" placeholder="******************" maxlength="50"
                 [(ngModel)]="agency.confirmPassword" [ngModelOptions]="{standalone: true}"

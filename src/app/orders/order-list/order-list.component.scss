@@ -31,7 +31,7 @@
     .mat-mdc-row .mat-mdc-cell {
         border-bottom: 1px solid transparent;
         border-top: 1px solid transparent;
-        cursor: pointer;
+        //cursor: pointer;
     }
 
     .mat-mdc-row:hover .mat-mdc-cell {
@@ -56,6 +56,23 @@
 
     .color-black {
         color: black;
+    }
+
+    .fa-trash {
+        text-align: center;
+        padding-top: 8px;
+        cursor: pointer;
+    }
+
+    .fa-pen {
+        text-align: center;
+        padding-top: 8px;
+        margin-right: 8px;
+        cursor: pointer;
+    }
+
+    .center {
+        text-align: center;
     }
 }
 

@@ -27,6 +27,7 @@ import { DialogDetailOrderComponent } from './orders/order-list/dialog-detail-or
 import { DialogDetailAgencyComponent } from './agency/dialog-detail-agency/dialog-detail-agency.component';
 import { DialogDetailProductComponent } from './products/dialog-detail-product/dialog-detail-product.component';
 import { DialogConfirmOrderComponent } from './orders/order-list/dialog-confirm-order/dialog-confirm-order.component';
+import { DialogDeleteConfirmComponent } from './helpers/dialog-delete-confirm/dialog-delete-confirm.component';
 
 @NgModule({
   declarations: [
@@ -48,6 +49,7 @@ import { DialogConfirmOrderComponent } from './orders/order-list/dialog-confirm-
     DialogDetailAgencyComponent,
     DialogDetailProductComponent,
     DialogConfirmOrderComponent,
+    DialogDeleteConfirmComponent,
   ],
   imports: [
     BrowserModule,

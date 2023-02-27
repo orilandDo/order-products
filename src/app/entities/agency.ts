@@ -8,4 +8,5 @@ export interface Agency {
     accountName: string,
     password: string,
     contract: string,
+    updatedDate?: string,
 }
