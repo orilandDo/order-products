@@ -76,8 +76,8 @@
           <span class="col-4">{{item.productName}}</span>
           <input matInput
             class="col-3 margin appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-            id="quantity" type="number" max=100
-            [(ngModel)]="item.quantity" [ngModelOptions]="{standalone: true}" [errorStateMatcher]="matcher" />
+            id="quantity" type="number" max=100 [(ngModel)]="item.quantity" [ngModelOptions]="{standalone: true}"
+            [errorStateMatcher]="matcher" />
         </div>
       </div>
     </div>
@@ -141,7 +141,7 @@
         <mat-datepicker #picker></mat-datepicker>
       </mat-form-field>
     </div>
-    <div class="mb-6 row field">
+    <div class="mb-3 row field">
       <span class="col-5 text-label" for="note">
         Ghi chú
       </span>
@@ -149,6 +149,18 @@
         class="col-7 shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
         id="note" type="text" placeholder="" maxlength="1000" [(ngModel)]="order.note"
         [ngModelOptions]="{standalone: true}"></textarea>
+    </div>
+
+    <div class="mb-6 row field" [hidden]="!isAdmin && !isUpdated">
+      <span class="col-4 text-label" for="status">
+        Trạng thái đơn
+      </span>
+      <mat-radio-group class="col-8" [(ngModel)]="selectedStatus">
+        <mat-radio-button *ngFor="let item of status" 
+        [value]="item">
+          {{item.label}}
+        </mat-radio-button>
+      </mat-radio-group>
     </div>
     <!-- <div class="btn-container">
       <button class="btn-cancel py-2 px-4 rounded focus:outline-none focus:shadow-outline">Hủy bỏ</button>
@@ -162,8 +174,6 @@
     </div>
   </mat-dialog-content>
   <mat-dialog-actions>
-    <button mat-button mat-dialog-close *ngIf="isAdmin && isUpdated"
-      class="btn-export py-2 px-4 rounded focus:outline-none focus:shadow-outline">Xuất PDF</button>
     <button mat-button mat-dialog-close class="btn-cancel py-2 px-4 rounded focus:outline-none focus:shadow-outline"
       (click)="onCancel()">Hủy
       bỏ</button>

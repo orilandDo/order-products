@@ -1,6 +1,9 @@
 import { Component, Inject, OnInit } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { STATUS } from '../../../helpers/const-data';
 import { Order } from '../../../entities/order';
+import { Helper } from '../../../helpers/helper';
+import { PRODUCT_DATA } from '../../../mock-data/products-data';
 
 @Component({
   selector: 'app-dialog-confirm-order',
@@ -25,6 +28,14 @@ export class DialogConfirmOrderComponent implements OnInit {
     products: [],
   };
 
+  status: any[] = STATUS;
+  products: any[] = PRODUCT_DATA;
+  helper: Helper = new Helper();
+
+  isAdmin: boolean = new Helper().isAdmin();
+  isUpdated: boolean = true;
+  selectedStatus: any = {};
+
   constructor(public dialogRef: MatDialogRef<DialogConfirmOrderComponent>,
     @Inject(MAT_DIALOG_DATA) public data: Order,) {
 
@@ -46,11 +57,25 @@ export class DialogConfirmOrderComponent implements OnInit {
       this.order.note = this.data.note;
       this.order.products = this.data.products;
       this.order.contract = this.data.contract;
+      this.selectedStatus = this.status.find(x => x.value === this.order.status);
+
     } else {
+      this.isUpdated = false;
     }
   }
 
   onSubmit() {
-    // call api update sql and return update data list
+    if (this.order.status === 2) {
+      this.order.status = this.selectedStatus.value;
+      console.log(this.order)
+      // update to storage
+      //this.helper.updateStatusOrder(this.order.id, this.order.status);
+
+      //call api update status by id
+    } else {
+      // call api update order and return update data list
+    }
+
+    this.dialogRef.close(this.order);
   }
 }

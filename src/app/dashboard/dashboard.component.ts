@@ -8,7 +8,7 @@ import { Helper } from '../helpers/helper';
 })
 export class DashboardComponent implements OnInit {
   
-  helper: Helper = new Helper;
+  helper: Helper = new Helper();
 
   ngOnInit() {
     this.helper.checkSession('loginStatus');

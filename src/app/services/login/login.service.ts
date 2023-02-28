@@ -2,6 +2,8 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { BehaviorSubject } from 'rxjs';
 import { Router } from '@angular/router';
+import { ORDERS_DATA } from '../../mock-data/orders-data';
+import { MenuAdminData, MenuUserData } from '../../mock-data/menu-data';
 
 const httpOptions = {
     headers: new HttpHeaders({
@@ -21,9 +23,9 @@ export class LoginService {
     errorMessage: any = this.errorSubject.asObservable();
 
     data = [
-        {username: 'admin', password: '123aaa', isAdmin: 1},
-        {username: 'user1', password: '12345678', isAdmin: 0},
-        {username: 'user2@gmail.com', password: '123456', isAdmin: 0},
+        { username: 'admin', password: '123aaa', isAdmin: 1 },
+        { username: 'user1', password: '123aaa', isAdmin: 0 },
+        { username: 'user2@gmail.com', password: '123456', isAdmin: 0 },
     ]
 
     constructor(
@@ -47,14 +49,22 @@ export class LoginService {
 
 
 
-        
+
         // login thanh cong, lay danh sach menu tuong ung quyen account
 
         const user = this.data.find(x => x.username === username && x.password === password);
         if (user) {
-        //if (username === 'admin' && password === '123aaa') {
+            //if (username === 'admin' && password === '123aaa') {
             sessionStorage.setItem('loginStatus', '1');
             sessionStorage.setItem('isAdmin', user.isAdmin.toString());
+            sessionStorage.setItem('orderList', JSON.stringify(ORDERS_DATA)); // co the bo
+            let menu = [];
+            if (user.isAdmin) {
+                menu = MenuAdminData;
+            } else {
+                menu = MenuUserData;
+            }
+            sessionStorage.setItem('menuList', JSON.stringify(menu));
             this.errorSubject.next(null);
             this.router.navigateByUrl(this.navigateComponent);
         } else {

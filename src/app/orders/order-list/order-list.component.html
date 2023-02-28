@@ -1,6 +1,41 @@
 <div class="bg-white">
   <h2 class="header">Danh sách đơn đặt hàng</h2>
-  <div>form search</div>
+  <form class="action-search" [formGroup]="searchForm"
+  (ngSubmit)="searchOrder(searchForm.value)">
+    <div class="row">
+      <span class="col-4" for="id">Mã số đơn:</span>
+      <input matInput
+        class="col-4 appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+        id="id" type="text" maxlength="20" formControlName="id"/>
+    </div>
+    <div class="row">
+      <span class="col-4" for="agency">Tên khách hàng:</span>
+      <input matInput
+        class="col-4 appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+        id="agency" type="text" maxlength="50" formControlName="agency"/>
+    </div>
+    <div class="row">
+      <span class="col-4" for="createdDate">Ngày tạo đơn:</span>
+      <input matInput
+        class="col-4 appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+        id="createdDate" type="text" maxlength="20" formControlName="createdDate"/>
+    </div>
+    <div class="row">
+      <span class="col-4" for="receivedDate">Ngày nhận dự kiến:</span>
+      <input matInput
+        class="col-4 appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+        id="receivedDate" type="text" maxlength="20" formControlName="receivedDate"/>
+    </div>
+    <div class="row">
+      <span class="col-4" for="status">Trạng thái đơn:</span>
+      <select class="col-4 form-select" formControlName="status">
+        <option value="">-----</option>
+        <option value="{{item.value}}" *ngFor="let item of status">{{item.label}}</option>
+      </select>
+    </div>
+    <button type="submit">Tìm kiếm</button>
+
+  </form>
   <!-- <div class="search-group input-group">
     <form>
       <div class="row">
@@ -77,7 +112,8 @@
       </ng-container>
 
       <ng-container matColumnDef="quantity">
-        <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by quantity" class="nowrap">Số lượng <br />(tấn)</th>
+        <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by quantity" class="nowrap">Số
+          lượng <br />(tấn)</th>
         <td mat-cell class="wrap-text" *matCellDef="let element">
           <span *ngFor="let i of element.products">{{i.quantity}}<br /></span>
         </td>
@@ -85,31 +121,35 @@
 
       <!-- productTotal Column -->
       <ng-container matColumnDef="productTotal">
-        <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by productTotal" class="nowrap">Tổng số <br />lượng (tấn)</th>
+        <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by productTotal"
+          class="nowrap">Tổng số <br />lượng (tấn)</th>
         <td mat-cell *matCellDef="let element" class="center">{{element.productTotal}}</td>
       </ng-container>
 
       <!-- licensePlates Column -->
       <ng-container matColumnDef="licensePlates">
-        <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by license plates" class="nowrap">Số
+        <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by license plates"
+          class="nowrap">Số
           phương tiện</th>
         <td mat-cell *matCellDef="let element" class="center">{{element.licensePlates}}</td>
       </ng-container>
 
       <!-- driver Column -->
       <ng-container matColumnDef="driver">
-        <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by driver" class="nowrap">Tên tài xế</th>
+        <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by driver" class="nowrap">Tên
+          tài xế</th>
         <td mat-cell *matCellDef="let element" class="nowrap">{{element.driver}}</td>
       </ng-container>
 
       <!-- status Column -->
       <ng-container matColumnDef="status">
-        <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by status" class="nowrap">Trạng thái đơn hàng
+        <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by status" class="nowrap">
+          Trạng thái đơn hàng
         </th>
-        <td mat-cell *matCellDef="let element" class="center {{element.status === 1 ? 'color-black' : 'color-green'}}">
-          <mat-icon aria-hidden="false" aria-label="Confirm icon" fontSet="fas" 
-          fontIcon="{{element.status === 1 ? 'fa-spinner' : 'fa-check'}}" class="status-icon"></mat-icon>
-          <label class="pad-label">{{element.status === 1 ? 'Đang chờ' : 'Đã duyệt'}}</label>
+        <td mat-cell *matCellDef="let element" class="{{element.status === 1 ? 'color-black' : 'color-green'}}">
+          <mat-icon aria-hidden="false" aria-label="Confirm icon" fontSet="fas"
+            fontIcon="{{(element.status === 1 || element.status === 2) ? 'fa-spinner' : 'fa-check'}}" class="status-icon"></mat-icon>
+          <label class="pad-label">{{element.status === 1 ? 'Đang chờ' : (element.status === 2 ? 'Đang nhận' : 'Đã nhận')}}</label>
         </td>
       </ng-container>
 
@@ -118,10 +158,14 @@
         <th mat-header-cell *matHeaderCellDef mat-sort-header></th>
         <td mat-cell *matCellDef="let element">
           <div class="center">
-            <mat-icon aria-hidden="false" aria-label="Trash icon" fontSet="fas" fontIcon="fa-pen" class="fa-pen"
+            <mat-icon aria-hidden="false" aria-label="Edit icon" fontSet="fas" fontIcon="fa-pen" class="fa-pen"
               (click)="onEdit(element)"></mat-icon>
-            <mat-icon [hidden]="!isAdmin" aria-hidden="false" aria-label="Trash icon" fontSet="fas" fontIcon="fa-trash" class="fa-trash"
-              (click)="onDelete(element)"></mat-icon>
+            <mat-icon aria-hidden="false" aria-label="Print icon" fontSet="fas" fontIcon="fa-print" class="fa-print" 
+              (click)="onPrint(element)"></mat-icon>
+            <mat-icon [hidden]="!isAdmin" aria-hidden="false" aria-label="Download icon" fontSet="fas" fontIcon="fa-download"
+              class="fa-download" (click)="onDownloadPDF(element)"></mat-icon>
+            <mat-icon [hidden]="!isAdmin" aria-hidden="false" aria-label="Trash icon" fontSet="fas" fontIcon="fa-trash"
+              class="fa-trash" (click)="onDelete(element)"></mat-icon>
           </div>
         </td>
       </ng-container>
@@ -130,15 +174,16 @@
       <!-- <tr mat-row (click)="clickedRows.add(row)" [class.demo-row-is-clicked]="clickedRows.has(row)"
         *matRowDef="let row; columns: displayedColumns;"></tr> -->
       <!-- <tr mat-row (click)="openDialog(row)" *matRowDef="let row; columns: displayedColumns;"></tr> -->
-      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+      <tr mat-row [class.row-is-clicked]="clickedRows.has(row)" *matRowDef="let row; columns: displayedColumns;"></tr>
     </table>
     <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons aria-label="Select page of periodic elements">
     </mat-paginator>
   </div>
-  <div class="action-export">
+  <!-- <div class="action-export">
     <button class="btn-export" (click)="exportPdf()">
-      <mat-icon aria-hidden="false" aria-label="Export icon" fontSet="fas" fontIcon="fa-download" class="fa-download"></mat-icon>
+      <mat-icon aria-hidden="false" aria-label="Export icon" fontSet="fas" fontIcon="fa-download"
+        class="fa-download"></mat-icon>
       <label class="pad-label">Xuất file PDF</label>
     </button>
-  </div>
+  </div> -->
 </div>

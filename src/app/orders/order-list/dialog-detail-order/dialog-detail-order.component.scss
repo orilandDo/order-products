@@ -98,4 +98,8 @@
         margin-bottom: 4px;
     }
 
+    .mat-mdc-radio-button~.mat-mdc-radio-button {
+        margin-left: 16px;
+    }
+
 }

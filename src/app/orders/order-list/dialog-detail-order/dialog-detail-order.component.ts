@@ -1,12 +1,12 @@
 import { AfterViewInit, Component, Inject, OnInit } from '@angular/core';
 import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
-import { Cities, Transports } from '../../../helpers/const-data';
+import { Cities, STATUS, Transports } from '../../../helpers/const-data';
 import { PRODUCT_DATA } from '../../../mock-data/products-data';
 import { Order } from '../../../entities/order';
 import { MyErrorStateMatcher } from '../../order-create/order-create.component';
 import * as moment from 'moment';
 import { FormControl, Validators } from '@angular/forms';
-import { ICity, ITransport } from '../../../helpers/helper';
+import { Helper, ICity, ITransport } from '../../../helpers/helper';
 import { Product } from '../../../entities/product';
 import { DialogConfirmOrderComponent } from '../dialog-confirm-order/dialog-confirm-order.component';
 
@@ -21,12 +21,14 @@ export class DialogDetailOrderComponent implements OnInit, AfterViewInit {
   receivedDate: Date = new Date();
   error: any = '';
   selected: any;
-  isAdmin: boolean = false;
+  isAdmin: boolean = new Helper().isAdmin();
   isUpdated: boolean = true;
+  selectedStatus: any = {};
 
   cities: any[] = Cities;
   products: any[] = PRODUCT_DATA;
   transport: any[] = Transports;
+  status: any[] = STATUS;
 
   deliveryCityControl = new FormControl<ICity | null>(null, Validators.required);
   pickupCityControl = new FormControl<ICity | null>(null, Validators.required);
@@ -72,7 +74,7 @@ export class DialogDetailOrderComponent implements OnInit, AfterViewInit {
       this.order.note = this.data.note;
       this.order.products = this.data.products;
       this.order.contract = this.data.contract;
-      console.log(this.order.products)
+      this.selectedStatus = this.status.find(x => x.value === this.order.status);
 
     } else {
       this.isUpdated = false;
@@ -84,6 +86,7 @@ export class DialogDetailOrderComponent implements OnInit, AfterViewInit {
   }
 
   onSubmit() { 
+    this.order.status = this.selectedStatus.value;
     console.log(this.order)
     if (this.order.id === 0) {
       // navigate to view component
@@ -92,11 +95,13 @@ export class DialogDetailOrderComponent implements OnInit, AfterViewInit {
       });
   
       dialogRef.afterClosed().subscribe(result => {
-        console.log('The dialog was closed');
+        console.log('The dialog detail was closed');
         //row = result;
       });
     } else {
       // call api update sql and return update data list
+
+      this.dialogRef.close(this.order);
     }
   }
 

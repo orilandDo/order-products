@@ -1,4 +1,5 @@
 import { animate, style, transition, trigger, keyframes } from "@angular/animations";
+import { Order } from "../entities/order";
 
 export interface INavbarData {
     routeLink: string;
@@ -73,5 +74,35 @@ export class Helper {
     }
     return true;
   }
+
+  getOrderList(): Order[] {
+    let orderList: Order[] = [];
+    let jsonString = sessionStorage.getItem('orderList');
+    if (jsonString) {
+      orderList = JSON.parse(jsonString) as Order[];
+    }
+    return orderList;
+  }
+
+  getMenuList(): INavbarData[] {
+    let menuList: INavbarData[] = [];
+    let jsonString = sessionStorage.getItem('menuList');
+    if (jsonString) {
+      menuList = JSON.parse(jsonString) as INavbarData[];
+    }
+    return menuList;
+  }
+
+  // updateStatusOrder(id: number, status: number) {
+  //   let orderList = this.getOrderList();
+  //   if (orderList.length > 0) {
+  //     orderList.forEach(element => {
+  //       if (element.id === id) {
+  //         element.status = status;
+  //       }
+  //     });
+  //     sessionStorage.setItem('orderList', JSON.stringify(orderList));
+  //   }
+  // }
 }
 

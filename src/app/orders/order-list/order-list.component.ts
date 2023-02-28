@@ -1,4 +1,4 @@
-import { AfterViewInit, Component, ViewChild } from '@angular/core';
+import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
@@ -6,29 +6,47 @@ import { MatTableDataSource } from '@angular/material/table';
 import { ActivatedRoute, Router } from '@angular/router';
 import { DialogDeleteConfirmComponent } from '../../helpers/dialog-delete-confirm/dialog-delete-confirm.component';
 import { Order } from '../../entities/order';
-import { ORDERS_DATA } from '../../mock-data/orders-data';
 import { DialogDetailOrderComponent } from './dialog-detail-order/dialog-detail-order.component';
-import { Helper } from 'src/app/helpers/helper';
+import { Helper } from '../../helpers/helper';
 import { DialogConfirmOrderComponent } from './dialog-confirm-order/dialog-confirm-order.component';
+import { FormControl, FormGroup } from '@angular/forms';
+import { STATUS } from '../../helpers/const-data';
 
 @Component({
   selector: 'app-order-list',
   templateUrl: './order-list.component.html',
   styleUrls: ['./order-list.component.scss']
 })
-export class OrderListComponent implements AfterViewInit {
+export class OrderListComponent implements AfterViewInit, OnInit {
 
   displayedColumns: string[] = ['id', 'createdDate', 'contract', 'receivedDate', 'deliveryAddress', 'pickupAddress', 'productName', 'quantity', 'productTotal', 'licensePlates', 'driver', 'status', 'deleteAction'];
-  dataSource = new MatTableDataSource<Order>(ORDERS_DATA);
+  dataSource = new MatTableDataSource<Order>();
   clickedRows = new Set<Order>();
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
 
+  status = STATUS;
+  helper = new Helper();
   isAdmin: boolean = new Helper().isAdmin();
+  searchForm = new FormGroup({
+    id: new FormControl(0),
+    createdDate: new FormControl(''),
+    receivedDate: new FormControl(''),
+    agency: new FormControl(''),
+    status: new FormGroup({
+      value: new FormControl(0), 
+      label: new FormControl('-----'),
+    }),
+  });
 
   constructor(public dialog: MatDialog,
     public router: Router, private route: ActivatedRoute) { }
+
+  ngOnInit(): void {
+    this.dataSource.data = this.helper.getOrderList();
+    // load data from api
+  }
 
   ngAfterViewInit() {
     this.dataSource.sort = this.sort;
@@ -49,7 +67,7 @@ export class OrderListComponent implements AfterViewInit {
 
   onEdit(row: any) {
     console.log(row)
-    if (row.status === 2) {
+    if (row && row.status !== 1) {
       const dialogRef = this.dialog.open(DialogConfirmOrderComponent, {
         data: row,
       });
@@ -97,8 +115,16 @@ export class OrderListComponent implements AfterViewInit {
     });
   }
 
-  exportPdf() {
-    // xuat danh sach don dat hang
+  onPrint(row: any) {
+    // xuat don dat hang
+    console.log('In đơn hàng')
   }
+
+  onDownloadPDF(row: any) {
+    // xuat danh sach don dat hang
+    console.log('Download pdf')
+  }
+
+  searchOrder(data: any) {}
 
 }

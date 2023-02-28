@@ -14,3 +14,10 @@ export const Transports = [
   {value: 3, label: 'Máy bay'},
 ]
 
+
+export const STATUS = [
+  {value: 1, label: 'Đang chờ'},
+  {value: 2, label: 'Đang nhận'},
+  {value: 3, label: 'Đã nhận'},
+]
+

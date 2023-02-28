@@ -40,9 +40,14 @@
             <span class="col-5 text-label" for="products">
                 Sản phẩm
             </span>
-            <input matInput [disabled]="true"
-                class="col-7 appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-                id="products" type="text" [(ngModel)]="order.products" [ngModelOptions]="{standalone: true}" />
+            <div class="col-7">
+                <div *ngFor="let item of products">
+                  <span class="col-4">{{item.productName}}</span>
+                  <input matInput [disabled]="true"
+                    class="col-3 margin appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                    id="quantity" type="number" max=100 [(ngModel)]="item.quantity" [ngModelOptions]="{standalone: true}"/>
+                </div>
+              </div>
         </div>
         <div class="mb-3 row field">
             <span class="col-5 text-label" for="productTotal">
@@ -85,7 +90,7 @@
                 class="col-7 appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
                 id="receivedDate" type="text" [(ngModel)]="order.receivedDate" [ngModelOptions]="{standalone: true}" />
         </div>
-        <div class="mb-6 row field">
+        <div class="mb-3 row field">
             <span class="col-5 text-label" for="note">
                 Ghi chú
             </span>
@@ -93,14 +98,22 @@
                 class="col-7 shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
                 id="note" type="text" [(ngModel)]="order.note" [ngModelOptions]="{standalone: true}"></textarea>
         </div>
+        <div class="mb-6 row field" [hidden]="(!isAdmin && !isUpdated) || order.status === 3">
+            <span class="col-4 text-label" for="status">
+                Trạng thái đơn
+            </span>
+            <mat-radio-group class="col-8" [(ngModel)]="selectedStatus">
+                <mat-radio-button *ngFor="let item of status" [value]="item">
+                    {{item.label}}
+                </mat-radio-button>
+            </mat-radio-group>
+        </div>
     </mat-dialog-content>
     <mat-dialog-actions>
-        <button mat-button mat-dialog-close [hidden]="data.status === 2 ? true : false"
-            class="btn-cancel py-2 px-4 rounded focus:outline-none focus:shadow-outline">Hủy bỏ</button>
-        <button mat-button [mat-dialog-close]="true" [hidden]="data.status === 2 ? true : false"
+        <button mat-button [mat-dialog-close]="true" [hidden]="data.status === 3 ? true : ((data.status === 2 && !isAdmin) ? true : false)"
             class="btn-save py-2 px-4 rounded focus:outline-none focus:shadow-outline" type="button"
-            (click)="onSubmit()">Đặt hàng</button>
-        <button mat-button mat-dialog-close [hidden]="data.status === 2 ? false : true"
-            class="btn-cancel py-2 px-4 rounded focus:outline-none focus:shadow-outline">Đóng</button>
+            (click)="onSubmit()">{{order.status !== 1 ? 'Lưu' : 'Đặt hàng'}}</button>
+        <button mat-button mat-dialog-close
+            class="btn-cancel py-2 px-4 rounded focus:outline-none focus:shadow-outline">{{order.status === 2 || order.status === 3 ? 'Đóng' : 'Hủy bỏ'}}</button>
     </mat-dialog-actions>
 </div>
