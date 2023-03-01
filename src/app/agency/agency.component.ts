@@ -1,9 +1,10 @@
 import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
-import { MatPaginator } from '@angular/material/paginator';
+import { MatPaginator, MatPaginatorIntl } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import { Agency } from '../entities/agency';
+import { CustomPaginator } from '../helpers/custom-paginator';
 import { DialogDeleteConfirmComponent } from '../helpers/dialog-delete-confirm/dialog-delete-confirm.component';
 import { AGENCY_DATA } from '../mock-data/agency-data';
 import { DialogDetailAgencyComponent } from './dialog-detail-agency/dialog-detail-agency.component';
@@ -11,7 +12,10 @@ import { DialogDetailAgencyComponent } from './dialog-detail-agency/dialog-detai
 @Component({
   selector: 'app-agency',
   templateUrl: './agency.component.html',
-  styleUrls: ['./agency.component.scss']
+  styleUrls: ['./agency.component.scss'],
+  providers: [
+    { provide: MatPaginatorIntl, useValue: CustomPaginator() }  // Here
+  ]
 })
 export class AgencyComponent implements AfterViewInit, OnInit {
 

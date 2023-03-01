@@ -15,8 +15,8 @@ export class DialogConfirmOrderComponent implements OnInit {
   order: Order = {
     id: 0,
     createdDate: '',
-    deliveryAddress: '',
-    pickupAddress: '',
+    deliveryAddress: 0,
+    pickupAddress: 0,
     productTotal: 0,
     driver: '',
     note: '',
@@ -26,6 +26,7 @@ export class DialogConfirmOrderComponent implements OnInit {
     status: 0,
     contract: '',
     products: [],
+    agencyId: 0,
   };
 
   status: any[] = STATUS;

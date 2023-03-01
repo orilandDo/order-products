@@ -58,11 +58,14 @@ export class LoginService {
             sessionStorage.setItem('loginStatus', '1');
             sessionStorage.setItem('isAdmin', user.isAdmin.toString());
             sessionStorage.setItem('orderList', JSON.stringify(ORDERS_DATA)); // co the bo
+
             let menu = [];
             if (user.isAdmin) {
                 menu = MenuAdminData;
+                sessionStorage.setItem('username', 'Administrator');
             } else {
                 menu = MenuUserData;
+                sessionStorage.setItem('username', 'Nha phan phoi');
             }
             sessionStorage.setItem('menuList', JSON.stringify(menu));
             this.errorSubject.next(null);

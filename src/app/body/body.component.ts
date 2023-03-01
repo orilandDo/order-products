@@ -1,23 +1,29 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-body',
   templateUrl: './body.component.html',
   styleUrls: ['./body.component.scss']
 })
-export class BodyComponent {
+export class BodyComponent implements OnInit {
   @Input() collapsed = false;
   @Input() screenWidth = 0;
+  agency: string = '';
+
+  ngOnInit(): void {
+    const session = sessionStorage.getItem('username');
+    this.agency = (session && session.length > 0) ? session : '';
+  }
 
   getBodyClass(): string {
     let styleClass = '';
     if (this.collapsed && this.screenWidth > 768) {
       styleClass = 'body-trimmed';
-    } else if (this.collapsed 
+    } else if (this.collapsed
       && this.screenWidth <= 768
       && this.screenWidth > 0) {
-        styleClass = 'body-md-screen';
+      styleClass = 'body-md-screen';
     }
-    return styleClass; 
+    return styleClass;
   }
 }

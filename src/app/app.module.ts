@@ -17,7 +17,7 @@ import { OrderCreateComponent } from './orders/order-create/order-create.compone
 import { OrderReportComponent } from './orders/order-report/order-report.component';
 import { LoginComponent } from './login/login.component';
 import { SublevelMenuComponent } from './sidenav/sublevel-menu.component';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 import { LogoutComponent } from './logout/logout.component';
@@ -28,7 +28,14 @@ import { DialogDetailAgencyComponent } from './agency/dialog-detail-agency/dialo
 import { DialogDetailProductComponent } from './products/dialog-detail-product/dialog-detail-product.component';
 import { DialogConfirmOrderComponent } from './orders/order-list/dialog-confirm-order/dialog-confirm-order.component';
 import { DialogDeleteConfirmComponent } from './helpers/dialog-delete-confirm/dialog-delete-confirm.component';
+import { MatPaginatorIntl } from '@angular/material/paginator';
+import { CustomPaginator } from './helpers/custom-paginator';
+import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
+import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 
+export function HttpLoaderFactory(httpClient: HttpClient) {
+  return new TranslateHttpLoader(httpClient);
+}
 @NgModule({
   declarations: [
     AppComponent,
@@ -60,8 +67,16 @@ import { DialogDeleteConfirmComponent } from './helpers/dialog-delete-confirm/di
     MaterialModule,
     HttpClientModule,
     ReactiveFormsModule,
+    TranslateModule.forRoot({
+      loader: {
+        provide: TranslateLoader,
+        useFactory: HttpLoaderFactory,
+        deps: [HttpClient]
+      }
+    }),
   ],
-  providers: [{ provide: DateAdapter, useClass: DateFormat }],
+  providers: [{ provide: DateAdapter, useClass: DateFormat },
+    { provide: MatPaginatorIntl, useValue: CustomPaginator() }],
   bootstrap: [AppComponent]
 })
 export class AppModule { 

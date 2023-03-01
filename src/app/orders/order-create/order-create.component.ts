@@ -39,8 +39,8 @@ export class OrderCreateComponent implements OnInit, AfterViewInit {
   order: Order = {
     id: 0,
     createdDate: moment().format('DD-MM-YYYY'),
-    deliveryAddress: '',
-    pickupAddress: '',
+    deliveryAddress: 0,
+    pickupAddress: 0,
     productTotal: 0,
     transport: 1,
     licensePlates: '',
@@ -60,7 +60,8 @@ export class OrderCreateComponent implements OnInit, AfterViewInit {
         name: 'PCB 40 (vỏ bao Sử Tử) ',
         quantity: 20,
       },
-    ]
+    ],
+    agencyId: 1,
   }
 
   matcher = new MyErrorStateMatcher();

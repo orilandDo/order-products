@@ -26,6 +26,10 @@
         .bg-tr {
             background: beige;
         }
+
+        th {
+            white-space: pre;
+        }
     }
 
     .mat-mdc-row .mat-mdc-cell {
@@ -51,11 +55,15 @@
     }
 
     .color-green {
-        color: limegreen;
+        color: rgb(39, 171, 39);
     }
 
     .color-black {
         color: black;
+    }
+
+    .color-red {
+        color: red;
     }
 
     .fa-trash {
@@ -90,7 +98,23 @@
     }
 }
 
+table {
+    display: block;
+    overflow-x: auto;
+    white-space: nowrap;
+
+    .nowrap {
+        white-space: nowrap;
+    }
+
+    .status-icon {
+        padding-top: 8px;
+        padding-right: 8px;
+    }
+}
+
 .action-add {
+    margin-top: 2rem;
     background: royalblue;
     border: 1px solid royalblue;
     border-radius: 4px;
@@ -120,49 +144,89 @@
     }
 }
 
-table {
-    display: block;
-    overflow-x: auto;
-    white-space: nowrap;
+.action-export {
+    background: royalblue;
+    border: 1px solid royalblue;
+    border-radius: 4px;
+    margin-bottom: 1rem;
+    margin-top: 1rem;
+    margin-right: 1rem;
+    width: 8rem;
+    cursor: pointer;
+    overflow: auto;
+    float: right;
 
-    .nowrap {
-        white-space: nowrap;
+    .btn-export {
+        color: white;
+        background-color: transparent;
+        border: none;
+        padding-left: 8px;
+        padding-top: 5px;
+
+        .fa-download {
+            color: #fff;
+            font-size: 18px;
+            padding-top: 3px;
+        }
+
+        .pad-label {
+            margin-left: 5px;
+            position: absolute;
+        }
     }
 
-    .status-icon {
-        padding-top: 8px;
-        padding-right: 8px;
+    span {
+        font-weight: 700;
     }
 }
 
-// .action-export {
-//     background: royalblue;
-//     border: 1px solid royalblue;
-//     border-radius: 4px;
-//     margin-bottom: 1rem;
-//     margin-top: 1rem;
-//     margin-right: 1rem;
-//     width: 9rem;
-//     cursor: pointer;
-//     overflow: auto;
-//     float: right;
+.action-search {
+    padding: 1rem;
+    border: 1px solid gray;
+    border-radius: 4px;
 
-//     .btn-export {
-//         color: white;
-//         background-color: transparent;
-//         border: none;
-//         padding-left: 8px;
-//         padding-top: 5px;
+    .action {
 
-//         .fa-download {
-//             color: #fff;
-//             font-size: 18px;
-//             padding-top: 3px;
-//         }
+        margin-bottom: 1rem;
+        margin-top: 1rem;
+        margin-right: 1rem;
+        width: 100%;
+        cursor: pointer;
+        text-align: right;
 
-//         .pad-label {
-//             margin-left: 5px;
-//             position: absolute;
-//         }
-//     }
-// }
+        .btn-search {
+            background: royalblue !important;
+            border: 1px solid royalblue !important;
+            border-radius: 4px;
+            color: white;
+            background-color: transparent;
+            border: none;
+            padding-left: 8px;
+            padding-top: 5px;
+            padding-right: 1rem;
+
+            .fa-search {
+                color: #fff;
+                font-size: 18px;
+                padding-top: 6px;
+            }
+
+            label {
+                padding-left: 5px;
+                padding-bottom: 5px;
+            }
+        }
+    }
+
+    span {
+        font-weight: 700;
+    }
+
+    div {
+        margin-top: 6px;
+    }
+
+    select {
+        width: 25% !important;
+    }
+}

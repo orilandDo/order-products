@@ -1,9 +1,10 @@
 import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
-import { MatPaginator } from '@angular/material/paginator';
+import { MatPaginator, MatPaginatorIntl } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import { Product } from '../entities/product';
+import { CustomPaginator } from '../helpers/custom-paginator';
 import { DialogDeleteConfirmComponent } from '../helpers/dialog-delete-confirm/dialog-delete-confirm.component';
 import { PRODUCT_DATA } from '../mock-data/products-data';
 import { DialogDetailProductComponent } from './dialog-detail-product/dialog-detail-product.component';
@@ -11,7 +12,10 @@ import { DialogDetailProductComponent } from './dialog-detail-product/dialog-det
 @Component({
   selector: 'app-products',
   templateUrl: './products.component.html',
-  styleUrls: ['./products.component.scss']
+  styleUrls: ['./products.component.scss'],
+  providers: [
+    { provide: MatPaginatorIntl, useValue: CustomPaginator() }  // Here
+  ]
 })
 export class ProductsComponent implements AfterViewInit, OnInit {
 

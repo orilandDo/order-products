@@ -2,11 +2,11 @@ import { animate, style, transition, trigger, keyframes } from "@angular/animati
 import { Order } from "../entities/order";
 
 export interface INavbarData {
-    routeLink: string;
-    icon?: string;
-    label: string,
-    expanded?: boolean;
-    items?: INavbarData[];
+  routeLink: string;
+  icon?: string;
+  label: string,
+  expanded?: boolean;
+  items?: INavbarData[];
 }
 
 export interface ICity {
@@ -20,30 +20,30 @@ export interface ITransport {
 }
 
 export const fadeInOut = trigger('fadeInOut', [
-    transition(':enter', [
-        style({opacity: 0}),
-        animate('350ms',
-            style({opacity: 1})
-        )
-    ]),
-    transition(':leave', [
-        style({opacity: 1}),
-        animate('350ms',
-            style({opacity: 0})
-        )
-    ])
+  transition(':enter', [
+    style({ opacity: 0 }),
+    animate('350ms',
+      style({ opacity: 1 })
+    )
+  ]),
+  transition(':leave', [
+    style({ opacity: 1 }),
+    animate('350ms',
+      style({ opacity: 0 })
+    )
+  ])
 ])
 
 export const rotate = trigger('rotate', [
-    transition(':enter', [
-      animate('1000ms', 
-        keyframes([
-          style({transform: 'rotate(0deg)', offset: '0'}),
-          style({transform: 'rotate(2turn)', offset: '1'})
-        ])
-      )
-    ])
+  transition(':enter', [
+    animate('1000ms',
+      keyframes([
+        style({ transform: 'rotate(0deg)', offset: '0' }),
+        style({ transform: 'rotate(2turn)', offset: '1' })
+      ])
+    )
   ])
+])
 
 export class Helper {
 
@@ -80,6 +80,22 @@ export class Helper {
     let jsonString = sessionStorage.getItem('orderList');
     if (jsonString) {
       orderList = JSON.parse(jsonString) as Order[];
+      orderList.forEach(item => {
+        switch (item.status) {
+          case 1:
+            item.statusLabel = 'Đang chờ';
+            break;
+          case 2:
+            item.statusLabel = 'Đang nhận';
+            break;
+          case 3:
+            item.statusLabel = 'Đã nhận';
+            break;
+          case 4:
+            item.statusLabel = 'hủy';
+            break;
+        }
+      });
     }
     return orderList;
   }

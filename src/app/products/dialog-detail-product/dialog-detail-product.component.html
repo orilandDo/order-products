@@ -3,17 +3,17 @@
     <form class="form-create shadow-md rounded px-8 pt-6 pb-8">
         <div class="mb-3 row field p-top">
             <span class="col-5 text-label" for="productName">
-                Tên sản phẩm
+                {{'PRODUCT.NAME' | translate}}
                 <label class="require">*</label>
             </span>
             <input matInput
                 class="col-7 appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-                id="productName" type="text" placeholder="" maxlength="200" [(ngModel)]="product.productName"
+                id="productName" type="text" placeholder="" maxlength="200" [(ngModel)]="product.name"
                 [ngModelOptions]="{standalone: true}" [errorStateMatcher]="matcher" />
         </div>
         <div class="mb-3 row field">
             <span class="col-5 text-label" for="quantity">
-                Số lượng nhập kho
+                {{'PRODUCT.QUANTITY_WAREHOUSE' | translate}}
                 <label class="require">*</label>
             </span>
             <input matInput
@@ -24,7 +24,7 @@
         </div>
         <div class="mb-3 row field">
             <span class="col-5 text-label" for="price">
-                Giá sản phẩm
+                {{'PRODUCT.PRICE' | translate}}
                 <label class="require">*</label>
             </span>
             <input matInput
@@ -34,7 +34,7 @@
         </div>
         <div class="mb-6 row field">
             <span class="col-5 text-label" for="note">
-                Ghi chú
+                {{'PRODUCT.NOTE' | translate}}
             </span>
             <textarea
                 class="col-7 shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
@@ -43,10 +43,10 @@
         </div>
         <div class="btn-container">
             <button class="btn-cancel py-2 px-4 rounded focus:outline-none focus:shadow-outline"
-                [mat-dialog-close]="product.id" cdkFocusInitial>Hủy bỏ</button>
+                [mat-dialog-close]="product.id" cdkFocusInitial>{{'BUTTON.CANCEL' | translate}}</button>
             <button class="btn-save py-2 px-4 rounded focus:outline-none focus:shadow-outline" type="button"
                 (click)="onSubmit()">
-                Lưu
+                {{'BUTTON.SAVE' | translate}}
             </button>
         </div>
         <div *ngIf="error || (error !== null && error.length > 0)" class="notification">

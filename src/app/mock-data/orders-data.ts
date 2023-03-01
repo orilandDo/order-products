@@ -2,10 +2,33 @@ import { Order } from "../entities/order";
 
 export const ORDERS_DATA: Order[] = [
     {
+        id: 4,
+        createdDate: '02/01/2023',
+        deliveryAddress: 1,
+        pickupAddress: 1,
+        productTotal: 15,
+        driver: 'Tung',
+        note: 'Giao dung ngay',
+        transport: 1,
+        licensePlates: 'KG1234',
+        receivedDate: '10/01/2023',
+        status: 4,
+        statusLabel: 'Hủy',
+        contract: 'HĐBB2023/AMHT',
+        products: [
+            {
+                id: 4,
+                name: 'PCB 40 (vỏ bao Phụ tử)',
+                quantity: 50,
+            },
+        ],
+        agencyId: 3,
+    },
+    {
         id: 3,
         createdDate: '11/02/2023',
-        deliveryAddress: '12 Quan Phu Nhuan, Tp.HCM',
-        pickupAddress: 'Kho BSOC Kien Giang',
+        deliveryAddress: 2,
+        pickupAddress: 12,
         productTotal: 70,
         driver: 'Dung',
         note: 'Giao dung ngay',
@@ -13,6 +36,7 @@ export const ORDERS_DATA: Order[] = [
         licensePlates: 'KG0910',
         receivedDate: '28/02/2023',
         status: 1,
+        statusLabel: 'Đang chờ',
         contract: 'HĐBB2023/XMHT_KG',
         products: [
             {
@@ -30,13 +54,14 @@ export const ORDERS_DATA: Order[] = [
                 name: 'PCB 40 (vỏ bao Phụ tử)',
                 quantity: 30,
             },
-        ]
+        ],
+        agencyId: 1,
     },
     {
         id: 2,
         createdDate: '01/02/2023',
-        deliveryAddress: '12 Ly chinh Thang',
-        pickupAddress: 'Kho BSOC Cu Chi',
+        deliveryAddress: 3,
+        pickupAddress: 60,
         productTotal: 55,
         driver: 'Nguyen Thanh Tam',
         note: 'Giao dung ngay',
@@ -44,6 +69,7 @@ export const ORDERS_DATA: Order[] = [
         licensePlates: 'CT0989',
         receivedDate: '20/02/2023',
         status: 2,
+        statusLabel: 'Đang nhận',
         contract: 'HĐBB2023/XMHT',
         products: [
             {
@@ -56,13 +82,14 @@ export const ORDERS_DATA: Order[] = [
                 name: 'PCB 40 (vỏ bao Sử Tử) ',
                 quantity: 20,
             },
-        ]
+        ],
+        agencyId: 2,
     },
     {
         id: 1,
         createdDate: '02/01/2023',
-        deliveryAddress: '102 BR-VT',
-        pickupAddress: 'Kho BSOC Cu Chi',
+        deliveryAddress: 2,
+        pickupAddress: 24,
         productTotal: 15,
         driver: 'Tran Minh',
         note: 'Giao dung ngay',
@@ -70,6 +97,7 @@ export const ORDERS_DATA: Order[] = [
         licensePlates: 'KG1234',
         receivedDate: '10/01/2023',
         status: 3,
+        statusLabel: 'Đã nhận',
         contract: 'HĐBB2023/AMHT',
         products: [
             {
@@ -77,6 +105,7 @@ export const ORDERS_DATA: Order[] = [
                 name: 'PCB 40 (vỏ bao Phụ tử)',
                 quantity: 50,
             },
-        ]
+        ],
+        agencyId: 3,
     },
 ];

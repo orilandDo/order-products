@@ -1,6 +1,6 @@
-import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
+import { AfterViewInit, Component, HostListener, OnInit, ViewChild } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
-import { MatPaginator } from '@angular/material/paginator';
+import { MatPaginator, MatPaginatorIntl } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import { ActivatedRoute, Router } from '@angular/router';
@@ -11,11 +11,15 @@ import { Helper } from '../../helpers/helper';
 import { DialogConfirmOrderComponent } from './dialog-confirm-order/dialog-confirm-order.component';
 import { FormControl, FormGroup } from '@angular/forms';
 import { STATUS } from '../../helpers/const-data';
+import { CustomPaginator } from '../../helpers/custom-paginator';
 
 @Component({
   selector: 'app-order-list',
   templateUrl: './order-list.component.html',
-  styleUrls: ['./order-list.component.scss']
+  styleUrls: ['./order-list.component.scss'],
+  providers: [
+    { provide: MatPaginatorIntl, useValue: CustomPaginator() }  // Here
+  ]
 })
 export class OrderListComponent implements AfterViewInit, OnInit {
 
@@ -34,9 +38,9 @@ export class OrderListComponent implements AfterViewInit, OnInit {
     createdDate: new FormControl(''),
     receivedDate: new FormControl(''),
     agency: new FormControl(''),
-    status: new FormGroup({
-      value: new FormControl(0), 
-      label: new FormControl('-----'),
+    status: new FormControl({
+      value: 0, 
+      label: '-----',
     }),
   });
 
@@ -64,6 +68,14 @@ export class OrderListComponent implements AfterViewInit, OnInit {
   //     //row = result;
   //   });
   // }
+
+  @HostListener('click', ['$event']) 
+  onClick(event: any) {
+    const element = document.getElementsByClassName('mat-mdc-paginator-page-size-label');
+    if (element) {
+      element[0].innerHTML = 'Số dòng hiển thị: ';
+    }
+  }
 
   onEdit(row: any) {
     console.log(row)
@@ -117,14 +129,21 @@ export class OrderListComponent implements AfterViewInit, OnInit {
 
   onPrint(row: any) {
     // xuat don dat hang
-    console.log('In đơn hàng')
+    alert('In chi tiết đơn hàng dạng pdf')
   }
 
-  onDownloadPDF(row: any) {
-    // xuat danh sach don dat hang
-    console.log('Download pdf')
+  // onDownloadPDF(row: any) {
+  //   // xuat danh sach don dat hang
+  //   console.log('Download pdf')
+  // }
+
+  exportExcel() {
+    alert('Tải xuống danh sách đơn hàng, định dạng excel')
   }
 
-  searchOrder(data: any) {}
+  onSearch(data: any) {
+    console.log(data)
+    alert('Tìm kiếm đơn hàng')
+  }
 
 }

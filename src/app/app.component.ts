@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { TranslateService } from '@ngx-translate/core';
 
 interface SideNavToggle {
   screenWidth: number;
@@ -11,11 +12,13 @@ interface SideNavToggle {
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
-  title = 'order-products';
-
   isSideNavCollapsed = false;
   screenWidth = 0;
   isLoginSuccess: boolean = false;
+
+  constructor(public translate: TranslateService) {
+     translate.setDefaultLang('i18n');
+   }
 
   onToggleSideNav(data: SideNavToggle): void {
     this.screenWidth = data.screenWidth;

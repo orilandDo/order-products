@@ -9,6 +9,7 @@ import { FormControl, Validators } from '@angular/forms';
 import { Helper, ICity, ITransport } from '../../../helpers/helper';
 import { Product } from '../../../entities/product';
 import { DialogConfirmOrderComponent } from '../dialog-confirm-order/dialog-confirm-order.component';
+import { DeliveryData } from 'src/app/mock-data/delivery-data';
 
 @Component({
   selector: 'app-dialog-detail-order',
@@ -26,6 +27,7 @@ export class DialogDetailOrderComponent implements OnInit, AfterViewInit {
   selectedStatus: any = {};
 
   cities: any[] = Cities;
+  deliveries: any[] = DeliveryData;
   products: any[] = PRODUCT_DATA;
   transport: any[] = Transports;
   status: any[] = STATUS;
@@ -35,11 +37,14 @@ export class DialogDetailOrderComponent implements OnInit, AfterViewInit {
   productControl = new FormControl<Product | null>(null, Validators.required);
   transportControl = new FormControl<ITransport | null>(null, Validators.required);
 
+  pickupSelected: any = {};
+  deliverySelected: any = {};
+
   order: Order = {
     id: 0,
     createdDate: moment().format('DD/MM/YYYY'),
-    deliveryAddress: '',
-    pickupAddress: '',
+    deliveryAddress: 0,
+    pickupAddress: 0,
     productTotal: 0,
     driver: '',
     note: '',
@@ -49,6 +54,7 @@ export class DialogDetailOrderComponent implements OnInit, AfterViewInit {
     status: 0,
     contract: '',
     products: [],
+    agencyId: 0,
   };
 
   constructor(
@@ -75,9 +81,16 @@ export class DialogDetailOrderComponent implements OnInit, AfterViewInit {
       this.order.products = this.data.products;
       this.order.contract = this.data.contract;
       this.selectedStatus = this.status.find(x => x.value === this.order.status);
+      this.deliverySelected = this.deliveries.find(y => y.id === this.order.deliveryAddress);
+      this.pickupSelected = this.cities.find(y => y.id === this.order.pickupAddress);
 
     } else {
       this.isUpdated = false;
+      this.order.products = this.products;
+      this.order.products.forEach(element => {
+        element.quantity = 0;
+        this.order.productTotal += element.quantity;
+      });
     }
   }
 
@@ -107,5 +120,12 @@ export class DialogDetailOrderComponent implements OnInit, AfterViewInit {
 
   onCancel() {
     this.dialogRef.close();
+  }
+
+  onKeyUp(event: any) {
+    console.log(this.order.products)
+    this.order.products.forEach(element => {
+      this.order.productTotal += element.quantity;
+    });
   }
 }

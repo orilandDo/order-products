@@ -3,8 +3,8 @@
     margin: 0 !important;
     min-width: 100vh;
 
-    .p-top {
-        padding-top: 1rem;
+    .p-bottom {
+        padding-bottom: 1rem;
     }
 
     .field {
@@ -19,7 +19,7 @@
     .text-label {
         text-align: left;
         align-self: center;
-        font-weight: 500;
+        font-weight: 700;
         padding-left: 2rem;
     }
 
@@ -48,6 +48,7 @@
 
     .mat-mdc-dialog-actions {
         justify-content: end;
+        margin-right: 1.5rem;
     }
 
     .btn-save {

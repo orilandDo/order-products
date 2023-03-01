@@ -3,7 +3,7 @@
         <button class="logo" (click)="toggleCollapsed()">
             <mat-icon aria-hidden="false" aria-label="Sidenav icon" fontSet="fas" fontIcon="fa-bars" class="fa-bars"></mat-icon>
         </button>
-        <div class="logo-text" @fadeInOut *ngIf="collapsed">Angular</div>
+        <div class="logo-text" @fadeInOut *ngIf="collapsed">{{'TITLE_APP' | translate}}</div>
         <button class="btn-close" @rotate *ngIf="collapsed" (click)="closeSidenav()">
             <mat-icon aria-hidden="false" aria-label="Close icon" fontSet="fas" fontIcon="fa-xmark" class="fa-close"></mat-icon>
         </button>

@@ -1,9 +1,18 @@
 <div class="container bg-white">
-    <h2 class="header">Chi tiết đơn hàng</h2>
+    <h2 class="header p-bottom">{{'ORDER.TITLE_DETAIL' | translate}}</h2>
     <mat-dialog-content class="form-create shadow-md rounded px-8 pt-6 pb-8">
-        <div class="mb-3 row field p-top">
+        <div class="mb-3 row field" [hidden]="order.id === 0">
+            <span class="col-5 text-label" for="id">
+                {{'ORDER.ID' | translate}}
+                <label class="require">*</label>
+            </span>
+            <input matInput [disabled]="true"
+                class="col-5 appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                id="id" type="text" maxlength=10 [(ngModel)]="order.id" [ngModelOptions]="{standalone: true}" />
+        </div>
+        <div class="mb-3 row field">
             <span class="col-5 text-label" for="createdDate">
-                Ngày tạo đơn
+                {{'ORDER.CREATEDDATE' | translate}}
             </span>
             <input matInput [disabled]="true"
                 class="col-5 appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
@@ -12,15 +21,24 @@
         </div>
         <div class="mb-3 row field p-top">
             <span class="col-5 text-label" for="contract">
-                Hợp đồng
+                {{'ORDER.CONTRACT' | translate}}
             </span>
             <input matInput [disabled]="true"
                 class="col-7 appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
                 id="contract" type="text" [(ngModel)]="order.contract" [ngModelOptions]="{standalone: true}" />
         </div>
+        <div class="mb-3 row field" [hidden]="!isAdmin">
+            <span class="col-5 text-label" for="agency">
+                {{'ORDER.AGENCY' | translate}}
+            </span>
+            <input matInput [disabled]="true"
+                class="col-5 appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                id="agency" type="text" placeholder="" maxlength=200 [(ngModel)]="order.agencyName"
+                [ngModelOptions]="{standalone: true}" />
+        </div>
         <div class="mb-3 row field">
             <span class="col-5 text-label" for="deliveryAddress">
-                Nơi nhận
+                {{'ORDER.DELIVERY_ADDRESS' | translate}}
             </span>
             <input matInput [disabled]="true"
                 class="col-7 appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
@@ -29,7 +47,7 @@
         </div>
         <div class="mb-3 row field">
             <span class="col-5 text-label" for="pickupAddress">
-                Nơi giao
+                {{'ORDER.PICKUP_ADDRESS' | translate}}
             </span>
             <input matInput [disabled]="true"
                 class="col-7 appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
@@ -38,20 +56,22 @@
         </div>
         <div class="mb-3 row field">
             <span class="col-5 text-label" for="products">
-                Sản phẩm
+                {{'ORDER.PRODUCT_TYPE' | translate}}
             </span>
             <div class="col-7">
-                <div *ngFor="let item of products">
-                  <span class="col-4">{{item.productName}}</span>
-                  <input matInput [disabled]="true"
-                    class="col-3 margin appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-                    id="quantity" type="number" max=100 [(ngModel)]="item.quantity" [ngModelOptions]="{standalone: true}"/>
+                <div *ngFor="let item of order.products">
+                    <span class="col-4">{{item.name}}</span>
+                    <input matInput [disabled]="true"
+                        class="col-3 margin appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                        id="quantity" type="number" max="1000" [(ngModel)]="item.quantity"
+                        [ngModelOptions]="{standalone: true}" />
+                    (tấn)
                 </div>
-              </div>
+            </div>
         </div>
         <div class="mb-3 row field">
             <span class="col-5 text-label" for="productTotal">
-                Tổng số lượng
+                {{'ORDER.LABEL_TOTAL' | translate}}
             </span>
             <input matInput [disabled]="true"
                 class="col-5 appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
@@ -60,7 +80,7 @@
         </div>
         <div class="mb-3 row field">
             <span class="col-5 text-label" for="transport">
-                Phương tiện vận chuyển
+                {{'ORDER.TRANSPORT' | translate}}
             </span>
             <input matInput [disabled]="true"
                 class="col-7 appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
@@ -68,7 +88,7 @@
         </div>
         <div class="mb-3 row field">
             <span class="col-5 text-label" for="licensePlates">
-                Số phương tiện
+                {{'ORDER.LICENSE_PLATE' | translate}}
             </span>
             <input matInput [disabled]="true"
                 class="col-5 appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
@@ -76,7 +96,7 @@
         </div>
         <div class="mb-3 row field">
             <span class="col-5 text-label" for="driver">
-                Tên tài xế
+                {{'ORDER.DRIVER' | translate}}
             </span>
             <input matInput [disabled]="true"
                 class="col-7 appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
@@ -84,7 +104,7 @@
         </div>
         <div class="mb-3 row field">
             <span class="col-5 text-label" for="receivedDate">
-                Ngày nhận
+                {{'ORDER.LABEL_RECEIVEDDATE' | translate}}
             </span>
             <input matInput [disabled]="true"
                 class="col-7 appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
@@ -92,15 +112,15 @@
         </div>
         <div class="mb-3 row field">
             <span class="col-5 text-label" for="note">
-                Ghi chú
+                {{'ORDER.NOTE' | translate}}
             </span>
             <textarea [disabled]="true"
                 class="col-7 shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
                 id="note" type="text" [(ngModel)]="order.note" [ngModelOptions]="{standalone: true}"></textarea>
         </div>
-        <div class="mb-6 row field" [hidden]="(!isAdmin && !isUpdated) || order.status === 3">
+        <div class="mb-6 row field" [hidden]="(!isAdmin && !isUpdated) || order.status === 3 || order.status === 4">
             <span class="col-4 text-label" for="status">
-                Trạng thái đơn
+                {{'ORDER.STATUS' | translate}}
             </span>
             <mat-radio-group class="col-8" [(ngModel)]="selectedStatus">
                 <mat-radio-button *ngFor="let item of status" [value]="item">
@@ -110,10 +130,12 @@
         </div>
     </mat-dialog-content>
     <mat-dialog-actions>
-        <button mat-button [mat-dialog-close]="true" [hidden]="data.status === 3 ? true : ((data.status === 2 && !isAdmin) ? true : false)"
-            class="btn-save py-2 px-4 rounded focus:outline-none focus:shadow-outline" type="button"
-            (click)="onSubmit()">{{order.status !== 1 ? 'Lưu' : 'Đặt hàng'}}</button>
         <button mat-button mat-dialog-close
-            class="btn-cancel py-2 px-4 rounded focus:outline-none focus:shadow-outline">{{order.status === 2 || order.status === 3 ? 'Đóng' : 'Hủy bỏ'}}</button>
+            class="btn-cancel py-2 px-4 rounded focus:outline-none focus:shadow-outline">{{(order.status === 4 ||
+            order.status === 3 ? 'BUTTON.CLOSE' : 'BUTTON.CANCEL') | translate}}</button>
+        <button mat-button [mat-dialog-close]="true"
+            [hidden]="(data.status === 3 || data.status === 4) ? true : ((data.status === 2 && !isAdmin) ? true : false)"
+            class="btn-save py-2 px-4 rounded focus:outline-none focus:shadow-outline" type="button"
+            (click)="onSubmit()">{{(order.status !== 1 ? 'BUTTON.SAVE' : 'BUTTON.ORDER') | translate}}</button>
     </mat-dialog-actions>
 </div>
