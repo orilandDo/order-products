@@ -56,6 +56,7 @@ export class DialogDetailOrderComponent implements OnInit, AfterViewInit {
     contract: '',
     products: [],
     agencyId: 0,
+    agencyName: ''
   };
 
   constructor(
@@ -81,6 +82,8 @@ export class DialogDetailOrderComponent implements OnInit, AfterViewInit {
       this.order.note = this.data.note;
       this.order.products = this.data.products;
       this.order.contract = this.data.contract;
+      this.order.agencyId = this.data.agencyId;
+      this.order.agencyName = this.data.agencyName;
       this.selectedStatus = this.status.find(x => x.value === this.order.status);
       this.deliverySelected = this.deliveries.find(y => y.id === this.order.deliveryAddress);
       this.pickupSelected = this.cities.find(y => y.id === this.order.pickupAddress);

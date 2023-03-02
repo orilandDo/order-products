@@ -20,7 +20,7 @@
     <div class="row">
       <div class="col-6 row">
         <span class="col-6" for="createdDate">{{'ORDER.CREATEDDATE' | translate}}</span>
-        <input type="date" id="createdDate" name="createdDate"
+        <input matInput type="date" id="createdDate" name="createdDate"
           class="col-6 appearance-none border rounded w-full py-1 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
           [(ngModel)]="searchForm.createdDate">
       </div>
@@ -28,7 +28,7 @@
         <span class="col-6" for="receivedDate">{{'ORDER.SEARCH_RECEIVEDDATE' | translate}}</span>
         <input matInput
           class="col-6 appearance-none border rounded w-full py-1 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-          id="receivedDate" type="text" maxlength="20" [(ngModel)]="searchForm.receivedDate" />
+          id="receivedDate" type="date" [(ngModel)]="searchForm.receivedDate" />
       </div>
     </div>
 
