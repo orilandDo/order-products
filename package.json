@@ -28,6 +28,8 @@
     "@fortawesome/free-regular-svg-icons": "^6.3.0",
     "@fortawesome/free-solid-svg-icons": "^6.3.0",
     "@fortawesome/react-fontawesome": "^0.2.0",
+    "@ngx-translate/core": "^14.0.0",
+    "@ngx-translate/http-loader": "^7.0.0",
     "mdb-angular-ui-kit": "^4.0.0",
     "moment": "^2.29.4",
     "rxjs": "~7.8.0",
