@@ -13,6 +13,7 @@ import { Cities, STATUS } from '../../helpers/const-data';
 import { CustomPaginator } from '../../helpers/custom-paginator';
 import { DeliveryData } from '../../mock-data/delivery-data';
 import { PRODUCT_DATA } from '../../mock-data/products-data';
+import * as moment from 'moment';
 
 @Component({
   selector: 'app-order-list',
@@ -41,7 +42,7 @@ export class OrderListComponent implements AfterViewInit, OnInit {
   searchForm: any = {
     id: 0,
     agency: '',
-    createdDate: '',
+    createdDate: moment().format('DD/MM/YYYY'),
     receivedDate: '',
     status: {
       value: 0,
@@ -81,6 +82,10 @@ export class OrderListComponent implements AfterViewInit, OnInit {
     if (element) {
       element[0].innerHTML = 'Số dòng hiển thị: ';
     }
+  }
+
+  onAdd() {
+    this.router.navigate(['add'], { relativeTo: this.route }); 
   }
 
   onEdit(row: any) {

@@ -14,8 +14,8 @@
     .text-label {
         text-align: left;
         align-self: center;
-        font-weight: 500;
-        padding-left: 2rem;
+        font-weight: 700;
+        padding-left: 8px;
     }
 
     .require {
@@ -28,18 +28,19 @@
         padding-bottom: 5rem;
         padding-right: 1.5rem;
 
-        .btn-order {
-            width: 10rem;
-            min-width: 10rem;
+        .btn-save {
+            width: 8rem;
+            min-width: 8rem;
             color: white;
             background-color: royalblue;
             border-color: royalblue;
-            margin-left: 3rem;
+            margin-left: 1rem;
+            margin-right: 2rem;
         }
 
         .btn-cancel {
-            width: 10rem;
-            min-width: 10rem;
+            width: 8rem;
+            min-width: 8rem;
             color: black;
             background-color: #dadada;
             border-color: #dadada;
@@ -67,5 +68,19 @@
         display: block;
         font-weight: 500;
         padding-left: 1rem;
+    }
+
+    .custom-div {
+        padding-left: 0px;
+        padding-bottom: 4px;
+    }
+
+    select {
+        width: 50% !important;
+    }
+
+    .margin {
+        margin-left: 8px;
+        margin-bottom: 4px;
     }
 }

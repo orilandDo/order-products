@@ -88,13 +88,16 @@
         {{'ORDER.PRODUCT_TYPE' | translate}}
         <label class="require">*</label>
       </span>
-      <div class="col-7">
-        <div *ngFor="let item of order.products">
-          <span class="col-4">{{item.name}}</span>
+      <div class="col-7 row">
+        <div *ngFor="let item of order.products" class="custom-div">
+          <input matInput [disabled]="true"
+            class="col-7 appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+            id="name" type="text" [(ngModel)]="item.name" [ngModelOptions]="{standalone: true}" />
           <input matInput
             class="col-3 margin appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
             id="quantity" type="number" max="1000" min="0" maxlength="4" [(ngModel)]="item.quantity"
             [ngModelOptions]="{standalone: true}" [errorStateMatcher]="matcher" />
+          (tấn)
         </div>
       </div>
     </div>
@@ -104,9 +107,9 @@
         <label class="require">*</label>
       </span>
       <input matInput (mouseup)="onKeyUp($event)"
-        class="col-7 appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-        id="productTotal" type="number" placeholder="(đơn vị tính theo tấn)" max="99999"
-        [(ngModel)]="order.productTotal" [ngModelOptions]="{standalone: true}" [errorStateMatcher]="matcher" />
+        class="col-5 appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+        id="productTotal" type="number" max="99999" [(ngModel)]="order.productTotal"
+        [ngModelOptions]="{standalone: true}" [errorStateMatcher]="matcher" />
       <span class="col-2 text-label">(tấn)</span>
     </div>
     <div class="mb-3 row field">
@@ -190,7 +193,7 @@
     <button mat-button mat-dialog-close class="btn-cancel py-2 px-4 rounded focus:outline-none focus:shadow-outline"
       (click)="onCancel()">{{'BUTTON.CANCEL' | translate}}</button>
     <button mat-button class="btn-save py-2 px-4 rounded focus:outline-none focus:shadow-outline" type="button"
-      (click)="onSubmit()">{{(order.id === 0 ? 'BUTTON.ORDER' : 'BUTTON.SAVE') | translate }}
+      (click)="onSubmit()">{{'BUTTON.SAVE' | translate }}
     </button>
   </mat-dialog-actions>
 </div>

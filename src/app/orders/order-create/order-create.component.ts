@@ -1,13 +1,16 @@
-import { AfterViewInit, Component, OnInit } from '@angular/core';
-import { Cities, Transports } from '../../helpers/const-data';
+import { Component, Inject, OnInit } from '@angular/core';
+import { Cities, STATUS, Transports } from '../../helpers/const-data';
 import { Order } from '../../entities/order';
 import { FormControl, FormGroupDirective, NgForm, Validators } from '@angular/forms';
-import { ICity, ITransport } from '../../helpers/helper';
+import { Helper, ICity, ITransport } from '../../helpers/helper';
 import { Product } from '../../entities/product';
 import { ErrorStateMatcher } from '@angular/material/core';
 import * as moment from 'moment';
-import { PRODUCT_DATA } from 'src/app/mock-data/products-data';
+import { PRODUCT_DATA } from '../../mock-data/products-data';
 import { ActivatedRoute, Router } from '@angular/router';
+import { DeliveryData } from '../../mock-data/delivery-data';
+import { MatDialog, MatDialogRef } from '@angular/material/dialog';
+import { DialogConfirmOrderComponent } from '../order-list/dialog-confirm-order/dialog-confirm-order.component';
 
 export class MyErrorStateMatcher implements ErrorStateMatcher {
   isErrorState(control: FormControl | null, form: FormGroupDirective | NgForm | null): boolean {
@@ -21,105 +24,76 @@ export class MyErrorStateMatcher implements ErrorStateMatcher {
   templateUrl: './order-create.component.html',
   styleUrls: ['./order-create.component.scss']
 })
-export class OrderCreateComponent implements OnInit, AfterViewInit {
+export class OrderCreateComponent implements OnInit {
+  header: string = 'Thêm mới đơn hàng';
+  matcher = new MyErrorStateMatcher();
+
   cities: any[] = Cities;
+  deliveries: any[] = DeliveryData;
   products: any[] = PRODUCT_DATA;
   transport: any[] = Transports;
+  status: any[] = STATUS;
 
-  receivedDate: Date = new Date();
   error: any = '';
-  selected: any;
-  header: string = 'Thêm mới đơn hàng';
+  isAdmin: boolean = new Helper().isAdmin();
 
-  deliveryCityControl = new FormControl<ICity | null>(null, Validators.required);
-  pickupCityControl = new FormControl<ICity | null>(null, Validators.required);
-  productControl = new FormControl<Product | null>(null, Validators.required);
-  transportControl = new FormControl<ITransport | null>(null, Validators.required);
+  selectedStatus: any = {};
+  pickupSelected: any = {};
+  deliverySelected: any = {};
+  transportSelected: any = {};
 
   order: Order = {
     id: 0,
-    createdDate: moment().format('DD-MM-YYYY'),
+    createdDate: moment().format('DD/MM/YYYY'),
     deliveryAddress: 0,
     pickupAddress: 0,
     productTotal: 0,
-    transport: 1,
-    licensePlates: '',
     driver: '',
-    receivedDate: '',
     note: '',
+    transport: 0,
+    licensePlates: '',
+    receivedDate: '',
     status: 0,
     contract: '',
-    products: [
-      {
-        id: 1,
-        name: 'PCB 30 (vỏ bao Phụ Tử)',
-        quantity: 10,
-      },
-      {
-        id: 3,
-        name: 'PCB 40 (vỏ bao Sử Tử) ',
-        quantity: 20,
-      },
-    ],
-    agencyId: 1,
-  }
+    products: [],
+    agencyId: 0,
+    agencyName: ''
+  };
 
-  matcher = new MyErrorStateMatcher();
-
-  constructor(public router: Router, private route: ActivatedRoute){}
-
-  ngAfterViewInit(): void {
-
-  }
+  constructor(public router: Router,
+    private route: ActivatedRoute,
+    public dialog: MatDialog
+  ) { }
 
   ngOnInit(): void {
-    this.route.data.subscribe(data => 
-      {
-        if (data && data['id'] !== 0) {
-          this.header = 'Cập nhật thông tin đơn hàng';
-          this.order.id = data['id'];
-          this.order.createdDate = data['createdDate'];
-          this.order.deliveryAddress = data['deliveryAddress'];
-          this.order.pickupAddress = data['pickupAddress'];
-          this.order.productTotal = data['productTotal'];
-          this.order.driver = data['driver'];
-          this.order.note = data['note'];
-          this.order.transport = data['transport'];
-          this.order.licensePlates = data['licensePlates'];
-          this.order.receivedDate = data['receivedDate'];
-          this.order.status = data['status'];
-          this.order.note = data['note'];
-          this.order.products = data['products'];
-          this.order.contract = data['contract'];
-        }
-        console.log(data)
-      }
-      );
-    // if (data && data.id !== 0) {
-    //   this.header = 'Cập nhật thông tin đơn hàng';
-    //   this.order.id = this.data.id;
-    //   this.order.createdDate = this.data.createdDate;
-    //   this.order.deliveryAddress = this.data.deliveryAddress;
-    //   this.order.pickupAddress = this.data.pickupAddress;
-    //   this.order.productTotal = this.data.productTotal;
-    //   this.order.driver = this.data.driver;
-    //   this.order.note = this.data.note;
-    //   this.order.transport = this.data.transport;
-    //   this.order.licensePlates = this.data.licensePlates;
-    //   this.order.receivedDate = this.data.receivedDate;
-    //   this.order.status = this.data.status;
-    //   this.order.note = this.data.note;
-    //   this.order.products = this.data.products;
-    //   this.order.contract = this.data.contract;
-    // } else {
-    //   this.order.createdDate = moment().format('DD-MM-YYYY'); 
-    // }
+    this.order.products = this.products;
+    this.order.products.forEach(element => {
+      element.quantity = 0;
+      this.order.productTotal += element.quantity;
+    });
   }
 
-  onSubmit() { }
+  onSubmit() {
+    this.order.status = this.selectedStatus.value;
+    const dialogRef = this.dialog.open(DialogConfirmOrderComponent, {
+      data: this.order,
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      console.log('The dialog detail was closed');
+      this.router.navigate(['orders']); 
+    });
+   }
 
   onCancel() {
-    this.order
+    this.router.navigate(['orders']); 
+  }
+
+  onKeyUp(event: any) {
+    console.log(this.order.products)
+    this.order.products.forEach(element => {
+      this.order.productTotal += element.quantity;
+    });
   }
 
 }
