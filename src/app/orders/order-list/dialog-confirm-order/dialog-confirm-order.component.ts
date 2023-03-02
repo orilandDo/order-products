@@ -1,9 +1,10 @@
 import { Component, Inject, OnInit } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
-import { STATUS } from '../../../helpers/const-data';
+import { Cities, STATUS, Transports } from '../../../helpers/const-data';
 import { Order } from '../../../entities/order';
 import { Helper } from '../../../helpers/helper';
 import { PRODUCT_DATA } from '../../../mock-data/products-data';
+import { DeliveryData } from '../../../mock-data/delivery-data';
 
 @Component({
   selector: 'app-dialog-confirm-order',
@@ -15,27 +16,37 @@ export class DialogConfirmOrderComponent implements OnInit {
   order: Order = {
     id: 0,
     createdDate: '',
+    selectedDelivery: '',
     deliveryAddress: 0,
+    selectedPickup: '',
     pickupAddress: 0,
     productTotal: 0,
     driver: '',
     note: '',
     transport: 0,
+    selectedTransport: '',
     licensePlates: '',
     receivedDate: '',
     status: 0,
     contract: '',
     products: [],
     agencyId: 0,
+    agencyName: ''
   };
 
-  status: any[] = STATUS;
+  cities: any[] = Cities;
+  deliveries: any[] = DeliveryData;
   products: any[] = PRODUCT_DATA;
+  transport: any[] = Transports;
+  status: any[] = STATUS;
   helper: Helper = new Helper();
 
   isAdmin: boolean = new Helper().isAdmin();
   isUpdated: boolean = true;
   selectedStatus: any = {};
+  selectedDelivery: any = {};
+  selectedPickup: any = {};
+  selectedTransport: any = {};
 
   constructor(public dialogRef: MatDialogRef<DialogConfirmOrderComponent>,
     @Inject(MAT_DIALOG_DATA) public data: Order,) {
@@ -58,8 +69,12 @@ export class DialogConfirmOrderComponent implements OnInit {
       this.order.note = this.data.note;
       this.order.products = this.data.products;
       this.order.contract = this.data.contract;
+      this.order.agencyId = this.data.agencyId;
+      this.order.agencyName = this.data.agencyName;
       this.selectedStatus = this.status.find(x => x.value === this.order.status);
-
+      this.selectedDelivery = this.deliveries.find(x => x.id === this.order.deliveryAddress);
+      this.selectedPickup = this.cities.find(x => x.id === this.order.pickupAddress);
+      this.selectedTransport = this.transport.find(x => x.id === this.order.transport);
     } else {
       this.isUpdated = false;
     }

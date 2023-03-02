@@ -23,6 +23,7 @@ export const ORDERS_DATA: Order[] = [
             },
         ],
         agencyId: 3,
+        agencyName: 'Nguyen Cong Tri'
     },
     {
         id: 3,
@@ -56,6 +57,7 @@ export const ORDERS_DATA: Order[] = [
             },
         ],
         agencyId: 1,
+        agencyName: 'CN Thuy Thuy'
     },
     {
         id: 2,
@@ -84,6 +86,7 @@ export const ORDERS_DATA: Order[] = [
             },
         ],
         agencyId: 2,
+        agencyName: 'SPA Ga'
     },
     {
         id: 1,
@@ -107,5 +110,6 @@ export const ORDERS_DATA: Order[] = [
             },
         ],
         agencyId: 3,
+        agencyName: 'Luu Thien Huong'
     },
 ];

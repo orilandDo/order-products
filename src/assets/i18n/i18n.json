@@ -33,14 +33,15 @@
         "LABEL_TOTAL": "Tổng số lượng",
         "LICENSE_PLATE": "Số phương tiện",
         "DRIVER": "Tên tài xế",
-        "CITY": "Tỉnh/Thành phố",
+        "CITY": "Tỉnh/Thành phố/Khu vực",
         "TRANSPORT": "Phương tiện vận chuyển",
         "SELECT_TRANSPORT": "Chọn phương tiện",
         "NOTE": "Ghi chú",
         "STATUS_WAITING": "Đang chờ",
         "STATUS_RECEIVING": "Đang nhận",
         "STATUS_RECEIVED": "Đã nhận",
-        "STATUS_CANCEL": "Hủy"
+        "STATUS_CANCEL": "Hủy",
+        "LABEL_STATUS": "Chọn trạng thái"
     },
     "PRODUCT": {
         "MENU_TITLE": "Sản phẩm",

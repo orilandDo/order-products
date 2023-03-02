@@ -32,13 +32,14 @@ export class DialogDetailOrderComponent implements OnInit, AfterViewInit {
   transport: any[] = Transports;
   status: any[] = STATUS;
 
-  deliveryCityControl = new FormControl<ICity | null>(null, Validators.required);
-  pickupCityControl = new FormControl<ICity | null>(null, Validators.required);
-  productControl = new FormControl<Product | null>(null, Validators.required);
-  transportControl = new FormControl<ITransport | null>(null, Validators.required);
+  // deliveryCityControl = new FormControl<ICity | null>(null, Validators.required);
+  // pickupCityControl = new FormControl<ICity | null>(null, Validators.required);
+  // productControl = new FormControl<Product | null>(null, Validators.required);
+  // transportControl = new FormControl<ITransport | null>(null, Validators.required);
 
   pickupSelected: any = {};
   deliverySelected: any = {};
+  transportSelected: any = {};
 
   order: Order = {
     id: 0,
@@ -83,7 +84,7 @@ export class DialogDetailOrderComponent implements OnInit, AfterViewInit {
       this.selectedStatus = this.status.find(x => x.value === this.order.status);
       this.deliverySelected = this.deliveries.find(y => y.id === this.order.deliveryAddress);
       this.pickupSelected = this.cities.find(y => y.id === this.order.pickupAddress);
-
+      this.transportSelected = this.transport.find(y => y.id === this.order.transport);
     } else {
       this.isUpdated = false;
       this.order.products = this.products;
@@ -128,4 +129,5 @@ export class DialogDetailOrderComponent implements OnInit, AfterViewInit {
       this.order.productTotal += element.quantity;
     });
   }
+
 }

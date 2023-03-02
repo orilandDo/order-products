@@ -9,9 +9,10 @@ import { Order } from '../../entities/order';
 import { DialogDetailOrderComponent } from './dialog-detail-order/dialog-detail-order.component';
 import { Helper } from '../../helpers/helper';
 import { DialogConfirmOrderComponent } from './dialog-confirm-order/dialog-confirm-order.component';
-import { FormControl, FormGroup } from '@angular/forms';
-import { STATUS } from '../../helpers/const-data';
+import { Cities, STATUS } from '../../helpers/const-data';
 import { CustomPaginator } from '../../helpers/custom-paginator';
+import { DeliveryData } from '../../mock-data/delivery-data';
+import { PRODUCT_DATA } from '../../mock-data/products-data';
 
 @Component({
   selector: 'app-order-list',
@@ -30,19 +31,24 @@ export class OrderListComponent implements AfterViewInit, OnInit {
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
 
-  status = STATUS;
+  cities: any[] = Cities;
+  deliveries: any[] = DeliveryData;
+  products: any[] = PRODUCT_DATA;
+  status: any[] = STATUS;
   helper = new Helper();
   isAdmin: boolean = new Helper().isAdmin();
-  searchForm = new FormGroup({
-    id: new FormControl(0),
-    createdDate: new FormControl(''),
-    receivedDate: new FormControl(''),
-    agency: new FormControl(''),
-    status: new FormControl({
-      value: 0, 
-      label: '-----',
-    }),
-  });
+
+  searchForm: any = {
+    id: 0,
+    agency: '',
+    createdDate: '',
+    receivedDate: '',
+    status: {
+      value: 0,
+      label: '',
+    }
+  }
+  select = {};
 
   constructor(public dialog: MatDialog,
     public router: Router, private route: ActivatedRoute) { }
@@ -69,7 +75,7 @@ export class OrderListComponent implements AfterViewInit, OnInit {
   //   });
   // }
 
-  @HostListener('click', ['$event']) 
+  @HostListener('click', ['$event'])
   onClick(event: any) {
     const element = document.getElementsByClassName('mat-mdc-paginator-page-size-label');
     if (element) {
@@ -83,7 +89,7 @@ export class OrderListComponent implements AfterViewInit, OnInit {
       const dialogRef = this.dialog.open(DialogConfirmOrderComponent, {
         data: row,
       });
-  
+
       dialogRef.afterClosed().subscribe(result => {
         console.log('The dialog was closed');
       });
@@ -91,7 +97,7 @@ export class OrderListComponent implements AfterViewInit, OnInit {
       const dialogRef = this.dialog.open(DialogDetailOrderComponent, {
         data: row,
       });
-  
+
       dialogRef.afterClosed().subscribe(result => {
         console.log('The dialog was closed');
         if (result) {
@@ -109,7 +115,7 @@ export class OrderListComponent implements AfterViewInit, OnInit {
         }
       });
     }
-    
+
   }
 
   onDelete(row: any) {
@@ -141,9 +147,17 @@ export class OrderListComponent implements AfterViewInit, OnInit {
     alert('Tải xuống danh sách đơn hàng, định dạng excel')
   }
 
-  onSearch(data: any) {
-    console.log(data)
+  onSearch() {
+    console.log(this.searchForm)
     alert('Tìm kiếm đơn hàng')
+  }
+
+  compareObj(obj1: any[], obj2: any): string {
+    const obj = obj1.find(x => x.id === obj2);
+    if (obj) {
+      return obj.label;
+    }
+    return '';
   }
 
 }

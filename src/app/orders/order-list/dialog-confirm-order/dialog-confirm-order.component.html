@@ -4,7 +4,6 @@
         <div class="mb-3 row field" [hidden]="order.id === 0">
             <span class="col-5 text-label" for="id">
                 {{'ORDER.ID' | translate}}
-                <label class="require">*</label>
             </span>
             <input matInput [disabled]="true"
                 class="col-5 appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
@@ -42,7 +41,7 @@
             </span>
             <input matInput [disabled]="true"
                 class="col-7 appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-                id="deliveryAddress" type="text" [(ngModel)]="order.deliveryAddress"
+                id="deliveryAddress" type="text" [(ngModel)]="selectedDelivery.label"
                 [ngModelOptions]="{standalone: true}" />
         </div>
         <div class="mb-3 row field">
@@ -51,16 +50,18 @@
             </span>
             <input matInput [disabled]="true"
                 class="col-7 appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-                id="pickupAddress" type="text" [(ngModel)]="order.pickupAddress"
+                id="pickupAddress" type="text" [(ngModel)]="selectedPickup.label"
                 [ngModelOptions]="{standalone: true}" />
         </div>
         <div class="mb-3 row field">
             <span class="col-5 text-label" for="products">
                 {{'ORDER.PRODUCT_TYPE' | translate}}
             </span>
-            <div class="col-7">
-                <div *ngFor="let item of order.products">
-                    <span class="col-4">{{item.name}}</span>
+            <div class="col-7 row">
+                <div *ngFor="let item of order.products" class="custom-div">
+                    <input matInput [disabled]="true"
+                        class="col-7 appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                        id="name" type="text" [(ngModel)]="item.name" [ngModelOptions]="{standalone: true}" />
                     <input matInput [disabled]="true"
                         class="col-3 margin appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
                         id="quantity" type="number" max="1000" [(ngModel)]="item.quantity"
@@ -84,7 +85,8 @@
             </span>
             <input matInput [disabled]="true"
                 class="col-7 appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-                id="transport" type="text" [(ngModel)]="order.transport" [ngModelOptions]="{standalone: true}" />
+                id="transport" type="text" [(ngModel)]="selectedTransport.label"
+                [ngModelOptions]="{standalone: true}" />
         </div>
         <div class="mb-3 row field">
             <span class="col-5 text-label" for="licensePlates">

@@ -65,9 +65,9 @@ export const Cities = [
 ]
 
 export const Transports = [
-  {value: 1, label: 'Đường bộ'},
-  {value: 2, label: 'Đường thủy'},
-  {value: 3, label: 'Máy bay'},
+  {id: 1, label: 'Đường bộ'},
+  {id: 2, label: 'Đường thủy'},
+  {id: 3, label: 'Máy bay'},
 ]
 
 

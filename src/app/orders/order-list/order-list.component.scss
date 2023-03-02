@@ -39,7 +39,7 @@
     }
 
     .mat-mdc-row:hover .mat-mdc-cell {
-        border-color: currentColor;
+        //border-color: currentColor;
     }
 
     .row-is-clicked {
@@ -219,6 +219,7 @@ table {
     }
 
     span {
+        text-align: end;
         font-weight: 700;
     }
 
@@ -227,6 +228,6 @@ table {
     }
 
     select {
-        width: 25% !important;
+        width: 50% !important;
     }
 }
