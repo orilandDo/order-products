@@ -11,7 +11,7 @@
 }
 
 .table-container {
-    padding: 0 1rem;
+    padding: 1rem;
 
     table {
         width: 100%;
@@ -25,6 +25,10 @@
 
         .bg-tr {
             background: beige;
+        }
+
+        .nowrap {
+            white-space: nowrap;
         }
     }
 
@@ -93,4 +97,8 @@
             position: absolute;
         }
     }
+}
+
+.mat-mdc-dialog-content .mdc-dialog__content {
+    font-family: 'Times New Roman', Times, serif;
 }

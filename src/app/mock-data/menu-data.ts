@@ -2,32 +2,49 @@ export const MenuAdminData = [
     {
         routeLink: 'dashboard',
         icon: 'fa-house',
-        label: 'Dashboard',
+        label: 'Trang chủ',
     },
     {
         routeLink: 'orders',
         icon: 'fa-cart-shopping',
-        label: 'Orders',
+        label: 'Đơn đặt hàng',
+        items: [
+            {
+                routeLink: 'orders/list',
+                icon: 'fa-list',
+                label: 'Danh sách đơn hàng',
+            },
+            {
+                routeLink: 'orders/create',
+                icon: 'fa-plus',
+                label: 'Tạo mới đơn hàng',
+            },
+        ]
     },
     {
         routeLink: 'products',
         icon: 'fa-box-open',
-        label: 'Products',
+        label: 'Sản phẩm',
     },
     {
         routeLink: 'agency',
         icon: 'fa-user',
-        label: 'Agency',
+        label: 'Nhà phân phối',
     },
     {
         routeLink: 'statistics',
         icon: 'fa-chart-column',
-        label: 'Statistics',
+        label: 'Thống kê báo cáo',
+    },
+    {
+        routeLink: 'notify',
+        icon: 'fa-bell',
+        label: 'Thông báo',
     },
     {
         routeLink: 'logout',
         icon: 'fa-right-from-bracket',
-        label: 'Logout',
+        label: 'Đăng xuất',
     },
 ];
 
@@ -35,21 +52,38 @@ export const MenuUserData = [
     {
         routeLink: 'dashboard',
         icon: 'fa-house',
-        label: 'Dashboard',
+        label: 'Trang chủ',
     },
     {
         routeLink: 'orders',
         icon: 'fa-cart-shopping',
-        label: 'Orders',
+        label: 'Đơn đặt hàng',
+        items: [
+            {
+                routeLink: 'orders/list',
+                icon: 'fa-list',
+                label: 'Danh sách đơn hàng',
+            },
+            {
+                routeLink: 'orders/create',
+                icon: 'fa-plus',
+                label: 'Tạo mới đơn hàng',
+            },
+        ]
     },
     {
         routeLink: 'statistics',
         icon: 'fa-chart-column',
-        label: 'Statistics',
+        label: 'Thống kê báo cáo',
+    },
+    {
+        routeLink: 'notify',
+        icon: 'fa-bell',
+        label: 'Thông báo',
     },
     {
         routeLink: 'logout',
         icon: 'fa-right-from-bracket',
-        label: 'Logout',
+        label: 'Đăng xuất',
     },
 ];

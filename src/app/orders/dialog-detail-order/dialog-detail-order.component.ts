@@ -1,11 +1,11 @@
 import { Component, Inject, OnInit } from '@angular/core';
 import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
-import { Cities, STATUS, Transports } from '../../../helpers/const-data';
-import { PRODUCT_DATA } from '../../../mock-data/products-data';
-import { Order } from '../../../entities/order';
-import { MyErrorStateMatcher } from '../../order-create/order-create.component';
+import { Cities, STATUS, Transports } from '../../helpers/const-data';
+import { PRODUCT_DATA } from '../../mock-data/products-data';
+import { Order } from '../../entities/order';
+import { MyErrorStateMatcher } from '../order-add/order-add.component';
 import * as moment from 'moment';
-import { Helper } from '../../../helpers/helper';
+import { Helper } from '../../helpers/helper';
 import { DialogConfirmOrderComponent } from '../dialog-confirm-order/dialog-confirm-order.component';
 import { DeliveryData } from 'src/app/mock-data/delivery-data';
 

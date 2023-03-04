@@ -9,7 +9,7 @@
             <input matInput
                 class="col-7 appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
                 id="productName" type="text" placeholder="" maxlength="200" [(ngModel)]="product.name"
-                [ngModelOptions]="{standalone: true}" [errorStateMatcher]="matcher" />
+                [ngModelOptions]="{standalone: true}" [errorStateMatcher]="matcher"/>
         </div>
         <div class="mb-3 row field">
             <span class="col-5 text-label" for="quantity">
@@ -18,7 +18,7 @@
             </span>
             <input matInput
                 class="col-4 appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-                id="quantity" type="number" placeholder="" max="999999" [(ngModel)]="product.quantity"
+                id="quantity" type="number" placeholder="" min="0" max="999999" [(ngModel)]="product.quantity"
                 [ngModelOptions]="{standalone: true}" [errorStateMatcher]="matcher" />
             <span class="col-3 text-label">(tấn)</span>
         </div>
@@ -29,7 +29,7 @@
             </span>
             <input matInput
                 class="col-7 appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-                id="price" type="number" placeholder="" max="999999999" [(ngModel)]="product.price"
+                id="price" type="number" placeholder="" min="0" max="99999999" [(ngModel)]="product.price"
                 [ngModelOptions]="{standalone: true}" [errorStateMatcher]="matcher" />
         </div>
         <div class="mb-6 row field">
@@ -49,8 +49,8 @@
                 {{'BUTTON.SAVE' | translate}}
             </button>
         </div>
-        <div *ngIf="error || (error !== null && error.length > 0)" class="notification">
-            <span>error</span>
+        <div *ngIf="error || (error !== null && error.length > 0)" class="error">
+            <span>{{error}}</span>
         </div>
     </form>
 </div>

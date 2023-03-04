@@ -2,11 +2,6 @@
     padding: 1.5rem;
     margin: 0 !important;
     min-width: 100vh;
-    width: 150vh;
-
-    .margin {
-        margin-left: 8px;
-    }
 
     .p-bottom {
         padding-bottom: 1rem;
@@ -14,11 +9,17 @@
 
     .field {
         padding-right: 1.5rem;
+        width: 100%;
     }
 
     .header {
         text-align: center;
         padding-bottom: 1.5rem;
+    }
+
+    .require {
+        color: red;
+        margin-left: 0.25rem;
     }
 
     .text-label {
@@ -45,12 +46,6 @@
         padding: 1.5rem 0;
     }
 
-    .created-date {
-        display: block;
-        font-weight: 500;
-        padding-left: 1rem;
-    }
-
     .mat-mdc-dialog-actions {
         justify-content: end;
         margin-right: 1.5rem;
@@ -66,6 +61,27 @@
         color: black;
         background-color: #dadada;
         border-color: #dadada;
+        margin-right: 1rem;
+    }
+
+    .btn-export {
+        color: white;
+        background-color: brown;
+        border-color: brown;
+        margin-right: 1rem;
+    }
+
+    .margin {
+        margin-left: 8px;
+        margin-bottom: 4px;
+    }
+
+    .mat-mdc-radio-button~.mat-mdc-radio-button {
+        margin-left: 16px;
+    }
+
+    select {
+        width: 58% !important;
     }
 
     .custom-div {

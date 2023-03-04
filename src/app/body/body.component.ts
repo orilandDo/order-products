@@ -10,10 +10,12 @@ export class BodyComponent implements OnInit {
   @Input() screenWidth = 0;
   agency: string = '';
 
-  ngOnInit(): void {
+  ngAfterContentInit() {
     const session = sessionStorage.getItem('username');
     this.agency = (session && session.length > 0) ? session : '';
   }
+
+  ngOnInit(): void {  }
 
   getBodyClass(): string {
     let styleClass = '';

@@ -36,18 +36,6 @@ export class ProductsComponent implements AfterViewInit, OnInit {
     this.dataSource.paginator = this.paginator;
   }
 
-  // openDialog(row: any): void {
-  //   console.log(row)
-  //   const dialogRef = this.dialog.open(DialogDetailProductComponent, {
-  //     data: row,
-  //   });
-
-  //   dialogRef.afterClosed().subscribe(result => {
-  //     console.log('The dialog was closed');
-  //     //row = result;
-  //   });
-  // }
-
   onEdit(row: any) {
     console.log(row)
     const dialogRef = this.dialog.open(DialogDetailProductComponent, {
@@ -55,19 +43,24 @@ export class ProductsComponent implements AfterViewInit, OnInit {
     });
 
     dialogRef.afterClosed().subscribe(result => {
-      console.log('The dialog was closed');
-      //row = result;
-      row.productName = result.productName;
-      row.price = result.price;
-      row.quantity = result.quantity;
-      row.note = result.note;
+      if (!result) {
+        if (row && row.id !== 0) {
+          row.name = result.name;
+          row.price = result.price;
+          row.quantity = result.quantity;
+          row.note = result.note;
+        } else {
+          this.dataSource.data.push(result);
+          this.dataSource.data = this.dataSource.data; // push obj into datasource
+        }
+      }
     });
   }
 
   onDelete(row: any) {
     console.log(row.id)
     const dialogRef = this.dialog.open(DialogDeleteConfirmComponent, {
-      data: { id: row.id, content: 'Bạn chắc chắn muốn xóa sản phẩm "' + row.productName + '"?' },
+      data: { id: row.id, content: 'Bạn chắc chắn muốn xóa sản phẩm "' + row.name + '"?' },
     });
 
     dialogRef.afterClosed().subscribe(result => {

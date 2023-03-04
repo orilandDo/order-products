@@ -1,10 +1,10 @@
 import { Component, Inject, OnInit } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
-import { Cities, STATUS, Transports } from '../../../helpers/const-data';
-import { Order } from '../../../entities/order';
-import { Helper } from '../../../helpers/helper';
-import { PRODUCT_DATA } from '../../../mock-data/products-data';
-import { DeliveryData } from '../../../mock-data/delivery-data';
+import { Cities, STATUS, Transports } from '../../helpers/const-data';
+import { Order } from '../../entities/order';
+import { Helper } from '../../helpers/helper';
+import { PRODUCT_DATA } from '../../mock-data/products-data';
+import { DeliveryData } from '../../mock-data/delivery-data';
 
 @Component({
   selector: 'app-dialog-confirm-order',

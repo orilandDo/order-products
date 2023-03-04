@@ -28,7 +28,17 @@
             </span>
             <input matInput
                 class="col-7 appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-                id="phone" type="text" placeholder="" maxlength="11" [(ngModel)]="agency.phone"
+                id="phone" type="number" placeholder="" maxlength="12" [(ngModel)]="agency.phone"
+                [ngModelOptions]="{standalone: true}" [errorStateMatcher]="matcher" />
+        </div>
+        <div class="mb-3 row field">
+            <span class="col-5 text-label" for="email">
+                {{'AGENCY.EMAIL' | translate}}
+                <label class="require">*</label>
+            </span>
+            <input matInput
+                class="col-7 appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                id="email" type="email" placeholder="" maxlength="100" [(ngModel)]="agency.email"
                 [ngModelOptions]="{standalone: true}" [errorStateMatcher]="matcher" />
         </div>
         <div class="mb-3 row field">
@@ -89,7 +99,7 @@
                 {{'BUTTON.SAVE' | translate}}
             </button>
         </div>
-        <div *ngIf="error || (error !== null && error.length > 0)" class="notification">
+        <div *ngIf="error || (error !== null && error.length > 0)" class="error">
             <span>error</span>
         </div>
     </form>

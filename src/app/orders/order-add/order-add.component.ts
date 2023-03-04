@@ -1,16 +1,15 @@
-import { Component, Inject, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Cities, STATUS, Transports } from '../../helpers/const-data';
 import { Order } from '../../entities/order';
-import { FormControl, FormGroupDirective, NgForm, Validators } from '@angular/forms';
-import { Helper, ICity, ITransport } from '../../helpers/helper';
-import { Product } from '../../entities/product';
+import { FormControl, FormGroupDirective, NgForm } from '@angular/forms';
+import { Helper } from '../../helpers/helper';
 import { ErrorStateMatcher } from '@angular/material/core';
 import * as moment from 'moment';
 import { PRODUCT_DATA } from '../../mock-data/products-data';
 import { ActivatedRoute, Router } from '@angular/router';
 import { DeliveryData } from '../../mock-data/delivery-data';
-import { MatDialog, MatDialogRef } from '@angular/material/dialog';
-import { DialogConfirmOrderComponent } from '../order-list/dialog-confirm-order/dialog-confirm-order.component';
+import { MatDialog } from '@angular/material/dialog';
+import { DialogConfirmOrderComponent } from '../dialog-confirm-order/dialog-confirm-order.component';
 
 export class MyErrorStateMatcher implements ErrorStateMatcher {
   isErrorState(control: FormControl | null, form: FormGroupDirective | NgForm | null): boolean {
@@ -20,11 +19,11 @@ export class MyErrorStateMatcher implements ErrorStateMatcher {
 }
 
 @Component({
-  selector: 'app-order-create',
-  templateUrl: './order-create.component.html',
-  styleUrls: ['./order-create.component.scss']
+  selector: 'app-order-add',
+  templateUrl: './order-add.component.html',
+  styleUrls: ['./order-add.component.scss']
 })
-export class OrderCreateComponent implements OnInit {
+export class OrderAddComponent implements OnInit {
   header: string = 'Thêm mới đơn hàng';
   matcher = new MyErrorStateMatcher();
 

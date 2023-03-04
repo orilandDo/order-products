@@ -36,18 +36,6 @@ export class AgencyComponent implements AfterViewInit, OnInit {
     this.dataSource.paginator = this.paginator;
   }
 
-  // openDialog(row: any): void {
-  //   console.log(row)
-  //   const dialogRef = this.dialog.open(DialogDetailAgencyComponent, {
-  //     data: row,
-  //   });
-
-  //   dialogRef.afterClosed().subscribe(result => {
-  //     console.log('The dialog was closed');
-  //     //row = result;
-  //   });
-  // }
-
   onEdit(row: any) {
     console.log(row)
     const dialogRef = this.dialog.open(DialogDetailAgencyComponent, {
@@ -55,15 +43,21 @@ export class AgencyComponent implements AfterViewInit, OnInit {
     });
 
     dialogRef.afterClosed().subscribe(result => {
-      console.log('The dialog was closed');
-      //row = result;
-      row.fullName = result.fullName;
-      row.address = result.address;
-      row.phone = result.phone;
-      row.note = result.note;
-      row.email = result.email;
-      row.contract = result.contract;
-      row.password = result.password;
+      if (!result) {
+        debugger
+        if (row && row.id !== 0) {
+          row.fullName = result.fullName;
+          row.address = result.address;
+          row.phone = result.phone;
+          row.note = result.note;
+          row.email = result.email;
+          row.contract = result.contract;
+          row.password = result.password;
+        } else {
+          this.dataSource.data.push(result);
+          this.dataSource.data = this.dataSource.data; // push obj into datasource
+        }
+      }
     });
   }
 

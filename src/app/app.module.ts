@@ -12,8 +12,7 @@ import { StatisticsComponent } from './statistics/statistics.component';
 import { AgencyComponent } from './agency/agency.component';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { MaterialModule } from './helpers/material.module';
-import { OrderListComponent } from './orders/order-list/order-list.component';
-import { OrderCreateComponent } from './orders/order-create/order-create.component';
+import { OrderListComponent } from './orders/order-list.component';
 import { OrderReportComponent } from './orders/order-report/order-report.component';
 import { LoginComponent } from './login/login.component';
 import { SublevelMenuComponent } from './sidenav/sublevel-menu.component';
@@ -23,15 +22,17 @@ import { PageNotFoundComponent } from './page-not-found/page-not-found.component
 import { LogoutComponent } from './logout/logout.component';
 import { DateAdapter } from '@angular/material/core';
 import { DateFormat } from './helpers/date-format';
-import { DialogDetailOrderComponent } from './orders/order-list/dialog-detail-order/dialog-detail-order.component';
+import { DialogDetailOrderComponent } from './orders/dialog-detail-order/dialog-detail-order.component';
 import { DialogDetailAgencyComponent } from './agency/dialog-detail-agency/dialog-detail-agency.component';
 import { DialogDetailProductComponent } from './products/dialog-detail-product/dialog-detail-product.component';
-import { DialogConfirmOrderComponent } from './orders/order-list/dialog-confirm-order/dialog-confirm-order.component';
+import { DialogConfirmOrderComponent } from './orders/dialog-confirm-order/dialog-confirm-order.component';
 import { DialogDeleteConfirmComponent } from './helpers/dialog-delete-confirm/dialog-delete-confirm.component';
 import { MatPaginatorIntl } from '@angular/material/paginator';
 import { CustomPaginator } from './helpers/custom-paginator';
 import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
+import { NotifyComponent } from './notify/notify.component';
+import { OrderAddComponent } from './orders/order-add/order-add.component';
 
 export function HttpLoaderFactory(httpClient: HttpClient) {
   return new TranslateHttpLoader(httpClient);
@@ -46,7 +47,7 @@ export function HttpLoaderFactory(httpClient: HttpClient) {
     StatisticsComponent,
     AgencyComponent,
     OrderListComponent,
-    OrderCreateComponent,
+    OrderAddComponent,
     OrderReportComponent,
     LoginComponent,
     SublevelMenuComponent,
@@ -57,6 +58,7 @@ export function HttpLoaderFactory(httpClient: HttpClient) {
     DialogDetailProductComponent,
     DialogConfirmOrderComponent,
     DialogDeleteConfirmComponent,
+    NotifyComponent,
   ],
   imports: [
     BrowserModule,
