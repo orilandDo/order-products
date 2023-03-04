@@ -17,7 +17,7 @@ export const NavbarData: INavbarData[] = [
                 label: 'Danh sách đơn hàng',
             },
             {
-                routeLink: 'orders/create',
+                routeLink: 'orders/add',
                 icon: 'fa-plus',
                 label: 'Tạo mới đơn hàng',
             },
