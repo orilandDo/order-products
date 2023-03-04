@@ -2,7 +2,7 @@
     padding: 0 !important;
     margin: 0 !important;
     min-width: 100%;
-    
+
     .p-top {
         padding-top: 1rem;
     }
@@ -53,6 +53,7 @@
     .mat-select {
         margin-top: 0.625rem;
     }
+
     mat-hint {
         display: none !important;
     }
@@ -65,7 +66,7 @@
         text-align: center;
         padding: 1.5rem 0;
     }
-    
+
     .created-date {
         display: block;
         font-weight: 500;
@@ -75,14 +76,33 @@
     .custom-div {
         padding-left: 0px;
         padding-bottom: 4px;
+        display: flex;
     }
 
     select {
         width: 50% !important;
     }
 
+    mat-radio-button {
+        margin-right: 8px;
+    }
+
     .margin {
         margin-left: 8px;
         margin-bottom: 4px;
+    }
+
+    mat-dialog-content {
+        span {
+            justify-content: end;
+            display: flex;
+            padding-right: 3rem;
+        }
+    }
+
+    .label-ton {
+        justify-content: start !important;
+        padding-left: 8px;
+        margin: auto 0;
     }
 }

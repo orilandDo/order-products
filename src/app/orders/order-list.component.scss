@@ -29,6 +29,7 @@
 
         th {
             white-space: pre;
+            background: whitesmoke;
         }
     }
 
@@ -221,6 +222,7 @@ table {
     span {
         text-align: end;
         font-weight: 700;
+        margin: auto 0;
     }
 
     div {
@@ -231,10 +233,10 @@ table {
         width: 50% !important;
     }
 
-    // mat-form-field .mat-mdc-form-field-subscript-wrapper {
-    //     box-sizing: border-box;
-    // width: 100%;
-    // position: relative;
-    // display: none;
-    //}
+    .mat-mdc-form-field-subscript-wrapper {
+        box-sizing: border-box;
+        width: 100%;
+        position: relative;
+        display: none !important;
+    }
 }

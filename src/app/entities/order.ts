@@ -1,8 +1,8 @@
 export interface Order {
     id: number;
     createdDate: string; // Ngày tạo đơn
-    deliveryAddress: number; // Nơi nhận hàng
-    pickupAddress: number, // Nơi giao hàng
+    deliveryId: number; // Nơi nhận hàng
+    pickupId: number, // Nơi giao hàng
     productTotal: number,
     transport: number, // Phương tiện vận chuyển (1: bộ, 2: thủy, 3: hàng không)
     licensePlates: string, // Biển số

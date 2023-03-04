@@ -36,16 +36,16 @@ export class OrderAddComponent implements OnInit {
   error: any = '';
   isAdmin: boolean = new Helper().isAdmin();
 
-  selectedStatus: any = {};
-  pickupSelected: any = {};
-  deliverySelected: any = {};
-  transportSelected: any = {};
+  selectedStatus: any = {value: 1, label: ''};
+  pickupSelected: any = null;
+  deliverySelected: any = null;
+  transportSelected: any = null;
 
   order: Order = {
     id: 0,
     createdDate: moment().format('DD/MM/YYYY'),
-    deliveryAddress: 0,
-    pickupAddress: 0,
+    deliveryId: 0,
+    pickupId: 0,
     productTotal: 0,
     driver: '',
     note: '',
@@ -60,10 +60,11 @@ export class OrderAddComponent implements OnInit {
   };
 
   date = new FormControl(new Date());
+  helper = new Helper();
 
   constructor(public router: Router,
     private route: ActivatedRoute,
-    public dialog: MatDialog
+    public dialog: MatDialog,
   ) { }
 
   ngOnInit(): void {
@@ -75,15 +76,27 @@ export class OrderAddComponent implements OnInit {
   }
 
   onSubmit() {
-    this.order.status = this.selectedStatus.value;
-    const dialogRef = this.dialog.open(DialogConfirmOrderComponent, {
-      data: this.order,
-    });
+    debugger
+    this.order.status =  Number(this.selectedStatus.value);
+    this.order.deliveryId = Number(this.deliverySelected.id);
+    this.order.pickupId =  Number(this.pickupSelected.id);
+    this.order.transport =  Number(this.transportSelected.id);
+    this.order.receivedDate = moment(this.date.value).format('DD/MM/YYYY');
+    // const dialogRef = this.dialog.open(DialogConfirmOrderComponent, {
+    //   data: this.order,
+    // });
 
-    dialogRef.afterClosed().subscribe(result => {
-      console.log('The dialog detail was closed');
-      this.router.navigate(['orders']); 
-    });
+    // dialogRef.afterClosed().subscribe(result => {
+    //   console.log('The dialog detail was closed');
+    //   this.router.navigate(['orders']); 
+    // });
+
+    // Call api insert new record
+
+    // If return true (by id), save record to storage
+    this.order.id = 5;
+    this.helper.pushOrder(this.order);
+    this.router.navigate(['orders/list']); 
    }
 
   onCancel() {

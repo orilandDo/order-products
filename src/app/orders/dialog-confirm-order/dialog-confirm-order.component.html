@@ -36,21 +36,21 @@
                 [ngModelOptions]="{standalone: true}" />
         </div>
         <div class="mb-3 row field">
-            <span class="col-5 text-label" for="deliveryAddress">
+            <span class="col-5 text-label" for="deliveryId">
                 {{'ORDER.DELIVERY_ADDRESS' | translate}}
             </span>
             <input matInput [disabled]="true"
                 class="col-7 appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-                id="deliveryAddress" type="text" [(ngModel)]="selectedDelivery.label"
+                id="deliveryId" type="text" [(ngModel)]="selectedDelivery.label"
                 [ngModelOptions]="{standalone: true}" />
         </div>
         <div class="mb-3 row field">
-            <span class="col-5 text-label" for="pickupAddress">
+            <span class="col-5 text-label" for="pickupId">
                 {{'ORDER.PICKUP_ADDRESS' | translate}}
             </span>
             <input matInput [disabled]="true"
                 class="col-7 appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-                id="pickupAddress" type="text" [(ngModel)]="selectedPickup.label"
+                id="pickupId" type="text" [(ngModel)]="selectedPickup.label"
                 [ngModelOptions]="{standalone: true}" />
         </div>
         <div class="mb-3 row field">
@@ -60,10 +60,10 @@
             <div class="col-7 row">
                 <div *ngFor="let item of order.products" class="custom-div">
                     <input matInput [disabled]="true"
-                        class="col-7 appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                        class="col-7 appearance-none border rounded w-full py-2 px-2 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
                         id="name" type="text" [(ngModel)]="item.name" [ngModelOptions]="{standalone: true}" />
                     <input matInput [disabled]="true"
-                        class="col-3 margin appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                        class="col-3 margin appearance-none border rounded w-full py-2 px-2 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
                         id="quantity" type="number" max="1000" [(ngModel)]="item.quantity"
                         [ngModelOptions]="{standalone: true}" />
                     (tấn)
@@ -121,10 +121,10 @@
                 id="note" type="text" [(ngModel)]="order.note" [ngModelOptions]="{standalone: true}"></textarea>
         </div>
         <div class="mb-6 row field" [hidden]="(!isAdmin && !isUpdated) || order.status === 3 || order.status === 4">
-            <span class="col-4 text-label" for="status">
+            <span class="col-5 text-label" for="status">
                 {{'ORDER.STATUS' | translate}}
             </span>
-            <mat-radio-group class="col-8" [(ngModel)]="selectedStatus">
+            <mat-radio-group class="col-7" [(ngModel)]="selectedStatus">
                 <mat-radio-button *ngFor="let item of status" [value]="item">
                     {{item.label}}
                 </mat-radio-button>

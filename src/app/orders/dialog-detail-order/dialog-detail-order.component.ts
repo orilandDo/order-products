@@ -22,7 +22,6 @@ export class DialogDetailOrderComponent implements OnInit {
   error: any = '';
   isAdmin: boolean = new Helper().isAdmin();
   isUpdated: boolean = true;
-  selectedStatus: any = {};
 
   cities: any[] = Cities;
   deliveries: any[] = DeliveryData;
@@ -35,15 +34,16 @@ export class DialogDetailOrderComponent implements OnInit {
   // productControl = new FormControl<Product | null>(null, Validators.required);
   // transportControl = new FormControl<ITransport | null>(null, Validators.required);
 
-  pickupSelected: any = {};
-  deliverySelected: any = {};
-  transportSelected: any = {};
+  pickupSelected: any = null;
+  deliverySelected: any = null;
+  transportSelected: any = null;
+  selectedStatus: any = {};
 
   order: Order = {
     id: 0,
     createdDate: moment().format('DD/MM/YYYY'),
-    deliveryAddress: 0,
-    pickupAddress: 0,
+    deliveryId: 0,
+    pickupId: 0,
     productTotal: 0,
     driver: '',
     note: '',
@@ -57,7 +57,8 @@ export class DialogDetailOrderComponent implements OnInit {
     agencyName: ''
   };
 
-  date = new FormControl(new Date());
+  date = new FormControl();
+  helper = new Helper();
 
   constructor(
     public dialogRef: MatDialogRef<DialogDetailOrderComponent>,
@@ -70,8 +71,8 @@ export class DialogDetailOrderComponent implements OnInit {
       this.header = 'Cập nhật thông tin đơn hàng';
       this.order.id = this.data.id;
       this.order.createdDate = this.data.createdDate;
-      this.order.deliveryAddress = this.data.deliveryAddress;
-      this.order.pickupAddress = this.data.pickupAddress;
+      this.order.deliveryId = this.data.deliveryId;
+      this.order.pickupId = this.data.pickupId;
       this.order.productTotal = this.data.productTotal;
       this.order.driver = this.data.driver;
       this.order.note = this.data.note;
@@ -85,41 +86,54 @@ export class DialogDetailOrderComponent implements OnInit {
       this.order.agencyId = this.data.agencyId;
       this.order.agencyName = this.data.agencyName;
       this.selectedStatus = this.status.find(x => x.value === this.order.status);
-      this.deliverySelected = this.deliveries.find(y => y.id === this.order.deliveryAddress);
-      this.pickupSelected = this.cities.find(y => y.id === this.order.pickupAddress);
+      this.deliverySelected = this.deliveries.find(y => y.id === this.order.deliveryId);
+      this.pickupSelected = this.cities.find(y => y.id === this.order.pickupId);
       this.transportSelected = this.transport.find(y => y.id === this.order.transport);
-    } else {
-      this.isUpdated = false;
-      this.order.products = this.products;
-      this.order.products.forEach(element => {
-        element.quantity = 0;
-        this.order.productTotal += element.quantity;
-      });
+      //this.date = new FormControl(new Date(this.receivedDate));
+    // } else {
+    //   this.isUpdated = false;
+    //   this.order.products = this.products;
+    //   this.order.products.forEach(element => {
+    //     element.quantity = 0;
+    //     this.order.productTotal += element.quantity;
+    //   });
     }
   }
 
-  onSubmit() { 
+  onSubmit() {
     this.order.status = this.selectedStatus.value;
-    console.log(this.order)
-    if (this.order.id === 0) {
-      // navigate to view component
-      const dialogRef = this.dialog.open(DialogConfirmOrderComponent, {
-        data: this.order,
-      });
-  
-      dialogRef.afterClosed().subscribe(result => {
-        console.log('The dialog detail was closed');
-        //row = result;
-      });
-    } else {
-      // call api update sql and return update data list
+    this.order.deliveryId = Number(this.deliverySelected.id);
+    this.order.pickupId = Number(this.pickupSelected.id);
+    this.order.transport = Number(this.transportSelected.id);
+    this.order.receivedDate = moment(this.date.value).format('DD/MM/YYYY');
 
-      this.dialogRef.close(this.order);
-    }
+    // Call api update record
+
+    // If return true, save record to storage
+
+    this.helper.updateOrder(this.order);
+    this.dialogRef.close(this.order);
+
+    //console.log(this.order)
+    // if (this.order.id === 0) {
+    //   // navigate to view component
+    //   const dialogRef = this.dialog.open(DialogConfirmOrderComponent, {
+    //     data: this.order,
+    //   });
+
+    //   dialogRef.afterClosed().subscribe(result => {
+    //     console.log('The dialog detail was closed');
+    //     //row = result;
+    //   });
+    // } else {
+    //   // call api update sql and return update data list
+
+    //   this.dialogRef.close(this.order);
+    // }
   }
 
   onCancel() {
-    this.dialogRef.close();
+    this.dialogRef.close(null);
   }
 
   onKeyUp(event: any) {

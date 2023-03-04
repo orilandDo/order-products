@@ -41,23 +41,23 @@
                 [ngModelOptions]="{standalone: true}" [errorStateMatcher]="matcher" />
         </div>
         <div class="mb-3 row field">
-            <span class="col-4 text-label" for="deliveryAddress">
+            <span class="col-4 text-label" for="deliveryId">
                 {{'ORDER.DELIVERY_ADDRESS' | translate}}
                 <label class="require">*</label>
             </span>
-            <select class="col-6 form-select" [(value)]="deliverySelected" required>
-                <option value="0">-- {{'ORDER.CITY' | translate}} --</option>
-                <option value="{{item.id}}" *ngFor="let item of deliveries">{{item.label}}</option>
+            <select class="col-6 form-select" [(ngModel)]="deliverySelected" required>
+                <option [ngValue]="null" [disabled]="true" [selected]="true">-- {{'ORDER.CITY' | translate}} --</option>
+                <option [ngValue]="item" *ngFor="let item of deliveries">{{item.label}}</option>
             </select>
         </div>
         <div class="mb-3 row field">
-            <span class="col-4 text-label" for="pickupAddress">
+            <span class="col-4 text-label" for="pickupId">
                 {{'ORDER.PICKUP_ADDRESS' | translate}}
                 <label class="require">*</label>
             </span>
-            <select class="col-6 form-select" [(value)]="pickupSelected" required>
-                <option value="0">-- {{'ORDER.CITY' | translate}} --</option>
-                <option value="{{item.id}}" *ngFor="let item of cities">{{item.label}}</option>
+            <select class="col-6 form-select" [(ngModel)]="pickupSelected" required>
+                <option [ngValue]="null" [disabled]="true" [selected]="true">-- {{'ORDER.CITY' | translate}} --</option>
+                <option [ngValue]="item" *ngFor="let item of cities">{{item.label}}</option>
             </select>
         </div>
         <div class="mb-3 row field">
@@ -74,7 +74,7 @@
                         class="col-3 margin appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
                         id="quantity" type="number" max="1000" min="0" maxlength="4" [(ngModel)]="item.quantity"
                         [ngModelOptions]="{standalone: true}" [errorStateMatcher]="matcher" />
-                    (tấn)
+                    <span class="col-2 label-ton">(tấn)</span>
                 </div>
             </div>
         </div>
@@ -84,19 +84,19 @@
                 <label class="require">*</label>
             </span>
             <input matInput (mouseup)="onKeyUp($event)"
-                class="col-5 appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                class="col-3 appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
                 id="productTotal" type="number" placeholder="(đơn vị tính theo tấn)" max="99999"
                 [(ngModel)]="order.productTotal" [ngModelOptions]="{standalone: true}" [errorStateMatcher]="matcher" />
-            <span class="col-2 text-label">(tấn)</span>
+            <span class="col-2 text-label label-ton">(tấn)</span>
         </div>
         <div class="mb-3 row field">
             <span class="col-4 text-label" for="transport">
                 {{'ORDER.TRANSPORT' | translate}}
                 <label class="require">*</label>
             </span>
-            <select class="col-6 form-select" [(value)]="transportSelected" required>
-                <option value="0">-- {{'ORDER.SELECT_TRANSPORT' | translate}} --</option>
-                <option value="{{item.id}}" *ngFor="let item of transport">{{item.label}}</option>
+            <select class="col-6 form-select" [(ngModel)]="transportSelected" required>
+                <option [ngValue]="null" [disabled]="true" [selected]="true">-- {{'ORDER.SELECT_TRANSPORT' | translate}} --</option>
+                <option [ngValue]="item" *ngFor="let item of transport">{{item.label}}</option>
             </select>
         </div>
         <div class="mb-3 row field">
@@ -145,7 +145,7 @@
             <span class="col-4 text-label" for="status">
                 {{'ORDER.STATUS' | translate}}
             </span>
-            <mat-radio-group class="col-8" [(ngModel)]="selectedStatus">
+            <mat-radio-group class="col-6" [(ngModel)]="selectedStatus">
                 <mat-radio-button *ngFor="let item of status" [value]="item">
                     {{item.label}}
                 </mat-radio-button>
@@ -155,8 +155,7 @@
             <span>error</span>
         </div>
         <div class="btn-container">
-            <button mat-button mat-dialog-close
-                class="btn-cancel py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+            <button mat-button class="btn-cancel py-2 px-4 rounded focus:outline-none focus:shadow-outline"
                 (click)="onCancel()">{{'BUTTON.CANCEL' | translate}}</button>
             <button mat-button class="btn-save py-2 px-4 rounded focus:outline-none focus:shadow-outline" type="button"
                 (click)="onSubmit()">{{'BUTTON.ORDER'| translate }}

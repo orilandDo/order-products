@@ -14,6 +14,8 @@ import { CustomPaginator } from '../helpers/custom-paginator';
 import { DeliveryData } from '../mock-data/delivery-data';
 import { PRODUCT_DATA } from '../mock-data/products-data';
 import * as moment from 'moment';
+import { AGENCY_DATA } from '../mock-data/agency-data';
+import { FormControl, FormGroup } from '@angular/forms';
 
 @Component({
   selector: 'app-order-list',
@@ -25,7 +27,7 @@ import * as moment from 'moment';
 })
 export class OrderListComponent implements AfterViewInit, OnInit {
 
-  displayedColumns: string[] = ['id', 'createdDate', 'contract', 'receivedDate', 'deliveryAddress', 'pickupAddress', 'productName', 'quantity', 'productTotal', 'licensePlates', 'driver', 'status', 'deleteAction'];
+  displayedColumns: string[] = ['id', 'createdDate', 'contract', 'receivedDate', 'deliveryId', 'pickupId', 'productName', 'quantity', 'productTotal', 'licensePlates', 'driver', 'status', 'deleteAction'];
   dataSource = new MatTableDataSource<Order>();
   clickedRows = new Set<Order>();
 
@@ -39,17 +41,24 @@ export class OrderListComponent implements AfterViewInit, OnInit {
   helper = new Helper();
   isAdmin: boolean = new Helper().isAdmin();
 
+  agencyList: any[] = AGENCY_DATA;
+  agencySelected: any = null;
+
+  productSelected: any = null;
+  selectedStatus: any = null;
+
   searchForm: any = {
     id: 0,
-    agency: '',
+    agency: 0,
     createdDate: moment().format('DD/MM/YYYY'),
-    receivedDate: '',
-    status: {
-      value: 0,
-      label: '',
-    }
+    product: 0,
+    status: 0
   }
-  select = {};
+  //select = {};
+  range = new FormGroup({
+    start: new FormControl<Date | null>(null),
+    end: new FormControl<Date | null>(null),
+  });
 
   constructor(public dialog: MatDialog,
     public router: Router, private route: ActivatedRoute) { }
@@ -105,9 +114,9 @@ export class OrderListComponent implements AfterViewInit, OnInit {
 
       dialogRef.afterClosed().subscribe(result => {
         console.log('The dialog was closed');
-        if (result) {
-          row.deliveryAddress = result.deliveryAddress;
-          row.pickupAddress = result.pickupAddress;
+        if (result !== null) {
+          row.deliveryId = result.deliveryId;
+          row.pickupId = result.pickupId;
           row.productTotal = result.productTotal;
           row.transport = result.transport;
           row.licensePlates = result.licensePlates;
@@ -153,6 +162,10 @@ export class OrderListComponent implements AfterViewInit, OnInit {
   }
 
   onSearch() {
+    this.searchForm.agency = this.agencySelected.id;
+    this.searchForm.createdDate = '';
+    this.searchForm.product = this.productSelected.id;
+    this.searchForm.status = this.selectedStatus.value;
     console.log(this.searchForm)
     alert('Tìm kiếm đơn hàng')
   }

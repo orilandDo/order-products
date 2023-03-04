@@ -17,9 +17,9 @@ export class DialogConfirmOrderComponent implements OnInit {
     id: 0,
     createdDate: '',
     selectedDelivery: '',
-    deliveryAddress: 0,
+    deliveryId: 0,
     selectedPickup: '',
-    pickupAddress: 0,
+    pickupId: 0,
     productTotal: 0,
     driver: '',
     note: '',
@@ -57,8 +57,8 @@ export class DialogConfirmOrderComponent implements OnInit {
     if (this.data && this.data.id !== 0) {
       this.order.id = this.data.id;
       this.order.createdDate = this.data.createdDate;
-      this.order.deliveryAddress = this.data.deliveryAddress;
-      this.order.pickupAddress = this.data.pickupAddress;
+      this.order.deliveryId = this.data.deliveryId;
+      this.order.pickupId = this.data.pickupId;
       this.order.productTotal = this.data.productTotal;
       this.order.driver = this.data.driver;
       this.order.note = this.data.note;
@@ -72,8 +72,8 @@ export class DialogConfirmOrderComponent implements OnInit {
       this.order.agencyId = this.data.agencyId;
       this.order.agencyName = this.data.agencyName;
       this.selectedStatus = this.status.find(x => x.value === this.order.status);
-      this.selectedDelivery = this.deliveries.find(x => x.id === this.order.deliveryAddress);
-      this.selectedPickup = this.cities.find(x => x.id === this.order.pickupAddress);
+      this.selectedDelivery = this.deliveries.find(x => x.id === this.order.deliveryId);
+      this.selectedPickup = this.cities.find(x => x.id === this.order.pickupId);
       this.selectedTransport = this.transport.find(x => x.id === this.order.transport);
     } else {
       this.isUpdated = false;

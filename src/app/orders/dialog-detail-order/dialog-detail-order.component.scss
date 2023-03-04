@@ -2,6 +2,7 @@
     padding: 1.5rem;
     margin: 0 !important;
     min-width: 100vh;
+    width: 100vh;
 
     .p-bottom {
         padding-bottom: 1rem;
@@ -76,8 +77,8 @@
         margin-bottom: 4px;
     }
 
-    .mat-mdc-radio-button~.mat-mdc-radio-button {
-        margin-left: 16px;
+    mat-radio-button{
+        margin-right: 16px;
     }
 
     select {
@@ -87,6 +88,21 @@
     .custom-div {
         padding-left: 0px;
         padding-bottom: 4px;
+        display: flex;
+    }
+
+    mat-dialog-content {
+        span {
+            justify-content: end;
+            display: flex;
+            padding-right: 3rem;
+        }
+    }
+
+    .label-ton {
+        justify-content: start !important;
+        padding-left: 8px;
+        margin: auto 0;
     }
 
 }

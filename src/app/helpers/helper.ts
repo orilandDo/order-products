@@ -109,16 +109,39 @@ export class Helper {
     return menuList;
   }
 
-  // updateStatusOrder(id: number, status: number) {
-  //   let orderList = this.getOrderList();
-  //   if (orderList.length > 0) {
-  //     orderList.forEach(element => {
-  //       if (element.id === id) {
-  //         element.status = status;
-  //       }
-  //     });
-  //     sessionStorage.setItem('orderList', JSON.stringify(orderList));
-  //   }
-  // }
+  updateStatusOrder(id: number, status: number) {
+    let orderList = this.getOrderList();
+    if (orderList.length > 0) {
+      orderList.forEach(element => {
+        if (element.id === id) {
+          element.status = status;
+        }
+      });
+      sessionStorage.setItem('orderList', JSON.stringify(orderList));
+    }
+  }
+
+  updateOrder(obj: any) {
+    let orderList = this.getOrderList();
+    if (orderList.length > 0) {
+      orderList.forEach(element => {
+        if (element.id === obj.id) {
+          element = obj;
+        }
+      });
+      sessionStorage.setItem('orderList', JSON.stringify(orderList));
+    }
+  }
+
+  pushOrder(data:any) {
+    debugger
+    let orderList: Order[] = [];
+    let jsonString = sessionStorage.getItem('orderList');
+    if (jsonString) {
+      orderList = JSON.parse(jsonString) as Order[];
+      orderList.push(data);
+      sessionStorage.setItem('orderList', JSON.stringify(orderList));
+    }
+  }
 }
 

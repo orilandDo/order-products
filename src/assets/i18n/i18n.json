@@ -41,7 +41,9 @@
         "STATUS_RECEIVING": "Đang nhận",
         "STATUS_RECEIVED": "Đã nhận",
         "STATUS_CANCEL": "Hủy",
-        "LABEL_STATUS": "Chọn trạng thái"
+        "LABEL_STATUS": "Chọn trạng thái",
+        "SELECT_AGENCY": "Chọn NPP",
+        "SELECT_PRODUCT": "Chọn sản phẩm"
     },
     "PRODUCT": {
         "MENU_TITLE": "Sản phẩm",

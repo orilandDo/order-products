@@ -1,7 +1,6 @@
 import { Component, EventEmitter, HostListener, OnInit, Output } from '@angular/core';
 import { ActivatedRoute, Params, Router } from '@angular/router';
 import { fadeInOut, Helper, INavbarData, rotate } from '../helpers/helper';
-import { MenuAdminData, MenuUserData } from '../mock-data/menu-data';
 import { NavbarData } from './nav-data';
 
 interface SideNavToggle {
@@ -20,7 +19,7 @@ interface SideNavToggle {
 })
 export class SidenavComponent implements OnInit {
   @Output() onToggleSideNav: EventEmitter<SideNavToggle> = new EventEmitter();
-  collapsed = false;
+  collapsed = true;
   screenWidth = 0;
   navData = NavbarData;
   multiple: boolean = false;
