@@ -66,7 +66,7 @@
                 {{'AGENCY.CONFIRM_PASSWORD' | translate}}
                 <label class="require">*</label>
             </span>
-            <input matInput 
+            <input matInput
                 class="col-7 appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
                 id="confirmPassword" type="password" placeholder="******************" maxlength="50"
                 [(ngModel)]="agency.confirmPassword" [ngModelOptions]="{standalone: true}"
@@ -92,9 +92,9 @@
                 [ngModelOptions]="{standalone: true}"></textarea>
         </div>
         <div class="btn-container">
-            <button class="btn-cancel py-2 px-4 rounded focus:outline-none focus:shadow-outline"
-                [mat-dialog-close]="agency.id" cdkFocusInitial>{{'BUTTON.CANCEL' | translate}}</button>
-            <button class="btn-save py-2 px-4 rounded focus:outline-none focus:shadow-outline" [mat-dialog-close]="true" type="button"
+            <button class="btn-cancel py-2 px-4 rounded focus:outline-none focus:shadow-outline" (click)="onCancel()"
+                cdkFocusInitial>{{'BUTTON.CANCEL' | translate}}</button>
+            <button class="btn-save py-2 px-4 rounded focus:outline-none focus:shadow-outline" type="button"
                 (click)="onSubmit()">
                 {{'BUTTON.SAVE' | translate}}
             </button>

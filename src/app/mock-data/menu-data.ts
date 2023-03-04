@@ -7,7 +7,7 @@ export const MenuAdminData = [
     {
         routeLink: 'orders',
         icon: 'fa-cart-shopping',
-        label: 'Đơn đặt hàng',
+        label: 'Quản lý đơn hàng',
         items: [
             {
                 routeLink: 'orders/list',
@@ -57,7 +57,7 @@ export const MenuUserData = [
     {
         routeLink: 'orders',
         icon: 'fa-cart-shopping',
-        label: 'Đơn đặt hàng',
+        label: 'Quản lý đơn hàng',
         items: [
             {
                 routeLink: 'orders/list',

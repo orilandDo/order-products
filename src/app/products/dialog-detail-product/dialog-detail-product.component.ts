@@ -55,6 +55,10 @@ export class DialogDetailProductComponent implements OnInit {
     }    
   }
 
+  onCancel() {
+    this.dialogRef.close(null);
+  }
+
   validForm(): boolean {
     let isValidForm: boolean = true;
     if (this.product.name.length === 0) {

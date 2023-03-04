@@ -159,8 +159,7 @@
       </span>
       <mat-form-field appearance="fill" class="col-5 border rounded">
         <mat-label>Chọn ngày nhận</mat-label>
-        <input matInput [matDatepicker]="picker">
-        <!-- <mat-hint>DD/MM/YYYY</mat-hint> -->
+        <input matInput [matDatepicker]="picker" [formControl]="date">
         <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
         <mat-datepicker #picker></mat-datepicker>
       </mat-form-field>

@@ -28,7 +28,7 @@ export class AgencyComponent implements AfterViewInit, OnInit {
 
   constructor(public dialog: MatDialog) { }
   ngOnInit(): void {
-    
+
   }
 
   ngAfterViewInit() {
@@ -43,8 +43,7 @@ export class AgencyComponent implements AfterViewInit, OnInit {
     });
 
     dialogRef.afterClosed().subscribe(result => {
-      if (!result) {
-        debugger
+      if (result !== null) {
         if (row && row.id !== 0) {
           row.fullName = result.fullName;
           row.address = result.address;
@@ -52,7 +51,7 @@ export class AgencyComponent implements AfterViewInit, OnInit {
           row.note = result.note;
           row.email = result.email;
           row.contract = result.contract;
-          row.password = result.password;
+          row.password = result.password.length !== 0 ? result.password : row.password;
         } else {
           this.dataSource.data.push(result);
           this.dataSource.data = this.dataSource.data; // push obj into datasource

@@ -8,6 +8,7 @@ import * as moment from 'moment';
 import { Helper } from '../../helpers/helper';
 import { DialogConfirmOrderComponent } from '../dialog-confirm-order/dialog-confirm-order.component';
 import { DeliveryData } from 'src/app/mock-data/delivery-data';
+import { FormControl } from '@angular/forms';
 
 @Component({
   selector: 'app-dialog-detail-order',
@@ -55,6 +56,8 @@ export class DialogDetailOrderComponent implements OnInit {
     agencyId: 0,
     agencyName: ''
   };
+
+  date = new FormControl(new Date());
 
   constructor(
     public dialogRef: MatDialogRef<DialogDetailOrderComponent>,

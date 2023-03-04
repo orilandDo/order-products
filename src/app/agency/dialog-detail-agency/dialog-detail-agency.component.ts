@@ -67,6 +67,10 @@ export class DialogDetailAgencyComponent implements OnInit {
     }
   }
 
+  onCancel() {
+    this.dialogRef.close(null);
+  }
+
   validForm(): boolean {
     let isValidForm: boolean = true;
     if (this.agency.fullName.length === 0) {
@@ -81,9 +85,9 @@ export class DialogDetailAgencyComponent implements OnInit {
       isValidForm = false;
     } else if (this.agency.phone.length === 0) {
       isValidForm = false;
-    } else if (this.agency.password.length === 0) {
-      isValidForm = false;
-    } else if (this.agency.confirmPassword.length === 0) {
+    // } else if (this.agency.password.length === 0) {
+    //   isValidForm = false;
+    } else if (this.agency.id === 0 && this.agency.confirmPassword.length === 0) {
       isValidForm = false;
     } else {
       this.error = '';

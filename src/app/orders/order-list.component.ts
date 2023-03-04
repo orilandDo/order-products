@@ -84,9 +84,9 @@ export class OrderListComponent implements AfterViewInit, OnInit {
     }
   }
 
-  // onAdd() {
-  //   this.router.navigate(['add'], { relativeTo: this.route }); 
-  // }
+  onAdd() {
+    this.router.navigate(['orders/add']); 
+  }
 
   onEdit(row: any) {
     console.log(row)

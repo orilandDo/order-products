@@ -43,7 +43,7 @@ export class ProductsComponent implements AfterViewInit, OnInit {
     });
 
     dialogRef.afterClosed().subscribe(result => {
-      if (!result) {
+      if (result !== null) {
         if (row && row.id !== 0) {
           row.name = result.name;
           row.price = result.price;

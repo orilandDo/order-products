@@ -59,6 +59,8 @@ export class OrderAddComponent implements OnInit {
     agencyName: ''
   };
 
+  date = new FormControl(new Date());
+
   constructor(public router: Router,
     private route: ActivatedRoute,
     public dialog: MatDialog
@@ -85,11 +87,12 @@ export class OrderAddComponent implements OnInit {
    }
 
   onCancel() {
-    this.router.navigate(['orders']); 
+    this.router.navigate(['orders/list']); 
   }
 
   onKeyUp(event: any) {
     console.log(this.order.products)
+    this.order.productTotal = 0;
     this.order.products.forEach(element => {
       this.order.productTotal += element.quantity;
     });
