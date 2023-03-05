@@ -52,7 +52,9 @@ export class OrderListComponent implements AfterViewInit, OnInit {
     agency: 0,
     createdDate: moment().format('DD/MM/YYYY'),
     product: 0,
-    status: 0
+    status: 0,
+    start: '',
+    end: ''
   }
   //select = {};
   range = new FormGroup({
@@ -106,6 +108,7 @@ export class OrderListComponent implements AfterViewInit, OnInit {
 
       dialogRef.afterClosed().subscribe(result => {
         console.log('The dialog was closed');
+        this.dataSource.data = this.helper.getOrderList();
       });
     } else {
       const dialogRef = this.dialog.open(DialogDetailOrderComponent, {
@@ -129,7 +132,6 @@ export class OrderListComponent implements AfterViewInit, OnInit {
         }
       });
     }
-
   }
 
   onDelete(row: any) {
@@ -162,10 +164,12 @@ export class OrderListComponent implements AfterViewInit, OnInit {
   }
 
   onSearch() {
-    this.searchForm.agency = this.agencySelected.id;
+    this.searchForm.agency = this.agencySelected !== null ? this.agencySelected.id : 0;
     this.searchForm.createdDate = '';
-    this.searchForm.product = this.productSelected.id;
-    this.searchForm.status = this.selectedStatus.value;
+    this.searchForm.product = this.productSelected !== null ? this.productSelected.id : 0;
+    this.searchForm.status = this.selectedStatus !== null ? this.selectedStatus.value : 0;
+    this.searchForm.start = this.range.value.start !== null ? moment(this.range.value.start).format('DD/MM/YYYY') : '';
+    this.searchForm.end = this.range.value.end !== null ? moment(this.range.value.end).format('DD/MM/YYYY') : '';
     console.log(this.searchForm)
     alert('Tìm kiếm đơn hàng')
   }

@@ -19,7 +19,7 @@ interface SideNavToggle {
 })
 export class SidenavComponent implements OnInit {
   @Output() onToggleSideNav: EventEmitter<SideNavToggle> = new EventEmitter();
-  collapsed = true;
+  collapsed = false;
   screenWidth = 0;
   navData = NavbarData;
   multiple: boolean = false;
@@ -48,6 +48,7 @@ export class SidenavComponent implements OnInit {
   ngOnInit(): void {
     this.screenWidth = window.innerWidth;
     this.route.params.subscribe((params: Params) => this.isSuccess = params['caller']);
+    this.toggleCollapsed(); // set narba show after login
   }
 
   toggleCollapsed(): void {

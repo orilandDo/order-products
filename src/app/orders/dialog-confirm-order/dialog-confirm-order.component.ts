@@ -85,7 +85,7 @@ export class DialogConfirmOrderComponent implements OnInit {
       this.order.status = this.selectedStatus.value;
       console.log(this.order)
       // update to storage
-      //this.helper.updateStatusOrder(this.order.id, this.order.status);
+      this.helper.updateStatusOrder(this.order.id, this.order.status);
 
       //call api update status by id
     } else {

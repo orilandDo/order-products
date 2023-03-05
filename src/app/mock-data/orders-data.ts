@@ -35,7 +35,7 @@ export const ORDERS_DATA: Order[] = [
         note: 'Giao dung ngay',
         transport: 2,
         licensePlates: 'KG0910',
-        receivedDate: '28/02/2023',
+        receivedDate: '12/02/2023',
         status: 1,
         statusLabel: 'Đang chờ',
         contract: 'HĐBB2023/XMHT_KG',

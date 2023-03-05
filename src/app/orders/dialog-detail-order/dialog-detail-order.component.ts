@@ -6,7 +6,6 @@ import { Order } from '../../entities/order';
 import { MyErrorStateMatcher } from '../order-add/order-add.component';
 import * as moment from 'moment';
 import { Helper } from '../../helpers/helper';
-import { DialogConfirmOrderComponent } from '../dialog-confirm-order/dialog-confirm-order.component';
 import { DeliveryData } from 'src/app/mock-data/delivery-data';
 import { FormControl } from '@angular/forms';
 
@@ -105,7 +104,7 @@ export class DialogDetailOrderComponent implements OnInit {
     this.order.deliveryId = Number(this.deliverySelected.id);
     this.order.pickupId = Number(this.pickupSelected.id);
     this.order.transport = Number(this.transportSelected.id);
-    this.order.receivedDate = moment(this.date.value).format('DD/MM/YYYY');
+    this.order.receivedDate = this.date ? moment(this.date.value).format('DD/MM/YYYY') : '';
 
     // Call api update record
 
